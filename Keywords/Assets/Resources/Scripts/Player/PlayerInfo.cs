@@ -104,8 +104,7 @@ public class PlayerInfo : MonoBehaviour {
                 KeyCode.Joystick4Button19
             };
         } else if (controlName == "X") {
-            controlSet = new KeyCode[4]
-            {
+            controlSet = new KeyCode[4] {
                 KeyCode.Joystick1Button18,
                 KeyCode.Joystick2Button18,
                 KeyCode.Joystick3Button18,
