@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour {
     public static GameManager instance;
 
     public static Words words;
-    public static MakeWalls makeWalls;
+    public static DungeonGenerator makeWalls;
     public static Quit quit;
 
     //public int playerCount = 4;
@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour {
         }
 
         words = GetComponent<Words>();
-        makeWalls = GetComponent<MakeWalls>();
+        makeWalls = GetComponent<DungeonGenerator>();
         quit = GetComponent<Quit>();
 
         if (players.Length == 0) {

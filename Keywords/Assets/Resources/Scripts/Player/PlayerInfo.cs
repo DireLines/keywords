@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PlayerInfo : MonoBehaviour {
 
     public int playerNum;
+    public int teamNum;
     public int keys;//how many keys does the player have?
     public GameObject UI;//this player's UI;
     private TMPro.TextMeshProUGUI keyUI;//UI which displays how many keys the player has

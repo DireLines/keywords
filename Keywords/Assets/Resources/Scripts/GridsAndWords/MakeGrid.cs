@@ -12,7 +12,7 @@ public class MakeGrid : MonoBehaviour {
         transform.localScale = new Vector3(1f, 1f, 1f);
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < width; j++) {
-                GameObject newSquare = GameObject.Instantiate(
+                GameObject newSquare = Instantiate(
                     gridSquare,
                     transform.position + new Vector3(j * (gridSquare.transform.localScale.x + borderSize), -i * (gridSquare.transform.localScale.x + borderSize), 0f),
                     Quaternion.identity,
