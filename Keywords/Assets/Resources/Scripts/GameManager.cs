@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour {
     public Camera[] cameras;
     public PauseMenu pauseMenu;
 
+    public Team[] teams;
+
     public Dictionary<string, AudioSource> sfx;
 
     private void Awake() {

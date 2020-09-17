@@ -3433,6 +3433,11 @@ PrefabInstance:
       propertyPath: UI
       value: 
       objectReference: {fileID: 193016911}
+    - target: {fileID: 6672107738324264240, guid: 25d26f1ffb97540048bf7196146c6dfa,
+        type: 3}
+      propertyPath: teamNum
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6672107738324264247, guid: 25d26f1ffb97540048bf7196146c6dfa,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3617,6 +3622,11 @@ PrefabInstance:
       propertyPath: UI
       value: 
       objectReference: {fileID: 23488818}
+    - target: {fileID: 6672107738324264240, guid: 25d26f1ffb97540048bf7196146c6dfa,
+        type: 3}
+      propertyPath: teamNum
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6672107738324264244, guid: 25d26f1ffb97540048bf7196146c6dfa,
         type: 3}
       propertyPath: doors
@@ -3935,6 +3945,11 @@ PrefabInstance:
       propertyPath: UI
       value: 
       objectReference: {fileID: 333296482}
+    - target: {fileID: 6672107738324264240, guid: 25d26f1ffb97540048bf7196146c6dfa,
+        type: 3}
+      propertyPath: teamNum
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6672107738324264244, guid: 25d26f1ffb97540048bf7196146c6dfa,
         type: 3}
       propertyPath: doors
@@ -7783,6 +7798,19 @@ MonoBehaviour:
   - {fileID: 545235387}
   - {fileID: 987614327}
   pauseMenu: {fileID: 1784250477}
+  teams:
+  - color: {r: 1, g: 0.6627451, b: 0.67058825, a: 1}
+    id: 1
+    score: 0
+  - color: {r: 0.7058824, g: 1, b: 0.5647059, a: 1}
+    id: 2
+    score: 0
+  - color: {r: 0.67058825, g: 0.91764706, b: 1, a: 1}
+    id: 3
+    score: 0
+  - color: {r: 0.9843137, g: 0.8862745, b: 0.4627451, a: 1}
+    id: 4
+    score: 0
 --- !u!114 &1569157450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9023,6 +9051,11 @@ PrefabInstance:
       propertyPath: UI
       value: 
       objectReference: {fileID: 328264681}
+    - target: {fileID: 6672107738324264240, guid: 25d26f1ffb97540048bf7196146c6dfa,
+        type: 3}
+      propertyPath: teamNum
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6672107738324264244, guid: 25d26f1ffb97540048bf7196146c6dfa,
         type: 3}
       propertyPath: doors

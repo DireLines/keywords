@@ -2925,6 +2925,11 @@ PrefabInstance:
       propertyPath: UI
       value: 
       objectReference: {fileID: 193016911}
+    - target: {fileID: 6672107738324264240, guid: 25d26f1ffb97540048bf7196146c6dfa,
+        type: 3}
+      propertyPath: teamNum
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6672107738324264247, guid: 25d26f1ffb97540048bf7196146c6dfa,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3018,12 +3023,12 @@ PrefabInstance:
     - target: {fileID: 6672107738324264233, guid: 25d26f1ffb97540048bf7196146c6dfa,
         type: 3}
       propertyPath: m_Name
-      value: Player3
+      value: Player2
       objectReference: {fileID: 0}
     - target: {fileID: 6672107738324264240, guid: 25d26f1ffb97540048bf7196146c6dfa,
         type: 3}
       propertyPath: playerNum
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6672107738324264240, guid: 25d26f1ffb97540048bf7196146c6dfa,
         type: 3}
@@ -3034,7 +3039,12 @@ PrefabInstance:
         type: 3}
       propertyPath: UI
       value: 
-      objectReference: {fileID: 23488818}
+      objectReference: {fileID: 328264681}
+    - target: {fileID: 6672107738324264240, guid: 25d26f1ffb97540048bf7196146c6dfa,
+        type: 3}
+      propertyPath: teamNum
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6672107738324264244, guid: 25d26f1ffb97540048bf7196146c6dfa,
         type: 3}
       propertyPath: doors
@@ -3088,7 +3098,7 @@ PrefabInstance:
     - target: {fileID: 6672107738324264247, guid: 25d26f1ffb97540048bf7196146c6dfa,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6672107738324264247, guid: 25d26f1ffb97540048bf7196146c6dfa,
         type: 3}
@@ -3114,7 +3124,7 @@ PrefabInstance:
         type: 3}
       propertyPath: cam
       value: 
-      objectReference: {fileID: 545235387}
+      objectReference: {fileID: 662210674}
     m_RemovedComponents:
     - {fileID: 6672107738324264244, guid: 25d26f1ffb97540048bf7196146c6dfa, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 25d26f1ffb97540048bf7196146c6dfa, type: 3}
@@ -3293,6 +3303,11 @@ PrefabInstance:
       propertyPath: UI
       value: 
       objectReference: {fileID: 333296482}
+    - target: {fileID: 6672107738324264240, guid: 25d26f1ffb97540048bf7196146c6dfa,
+        type: 3}
+      propertyPath: teamNum
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6672107738324264244, guid: 25d26f1ffb97540048bf7196146c6dfa,
         type: 3}
       propertyPath: doors
@@ -6657,7 +6672,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &1405495814
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7007,8 +7022,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1361296021}
-  - {fileID: 224411140}
   - {fileID: 1580477938}
+  - {fileID: 224411140}
   - {fileID: 1049471747}
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -7265,6 +7280,13 @@ MonoBehaviour:
   - {fileID: 545235387}
   - {fileID: 987614327}
   pauseMenu: {fileID: 1269714902}
+  teams:
+  - color: {r: 1, g: 0.6627451, b: 0.67058825, a: 1}
+    id: 1
+    score: 0
+  - color: {r: 0.39607847, g: 0.85098046, b: 0.9568628, a: 1}
+    id: 2
+    score: 0
 --- !u!114 &1569157450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8658,12 +8680,12 @@ PrefabInstance:
     - target: {fileID: 6672107738324264233, guid: 25d26f1ffb97540048bf7196146c6dfa,
         type: 3}
       propertyPath: m_Name
-      value: Player2
+      value: Player3
       objectReference: {fileID: 0}
     - target: {fileID: 6672107738324264240, guid: 25d26f1ffb97540048bf7196146c6dfa,
         type: 3}
       propertyPath: playerNum
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6672107738324264240, guid: 25d26f1ffb97540048bf7196146c6dfa,
         type: 3}
@@ -8674,7 +8696,12 @@ PrefabInstance:
         type: 3}
       propertyPath: UI
       value: 
-      objectReference: {fileID: 328264681}
+      objectReference: {fileID: 23488818}
+    - target: {fileID: 6672107738324264240, guid: 25d26f1ffb97540048bf7196146c6dfa,
+        type: 3}
+      propertyPath: teamNum
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6672107738324264244, guid: 25d26f1ffb97540048bf7196146c6dfa,
         type: 3}
       propertyPath: doors
@@ -8728,7 +8755,7 @@ PrefabInstance:
     - target: {fileID: 6672107738324264247, guid: 25d26f1ffb97540048bf7196146c6dfa,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6672107738324264247, guid: 25d26f1ffb97540048bf7196146c6dfa,
         type: 3}
@@ -8754,7 +8781,7 @@ PrefabInstance:
         type: 3}
       propertyPath: cam
       value: 
-      objectReference: {fileID: 662210674}
+      objectReference: {fileID: 545235387}
     m_RemovedComponents:
     - {fileID: 6672107738324264244, guid: 25d26f1ffb97540048bf7196146c6dfa, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 25d26f1ffb97540048bf7196146c6dfa, type: 3}
