@@ -136,7 +136,7 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetKeyDown(StartButton)) {
             GameManager.instance.pauseMenu.Toggle();
         }
-        if (GameManager.instance.pauseMenu.GetPaused()) {
+        if (GameManager.instance.pauseMenu.Paused()) {
             float lsVert = GetAxis("Vertical");
             if (!ls_pressed && Mathf.Abs(lsVert) > lsPressThreshold) {
                 ls_pressed = true;
