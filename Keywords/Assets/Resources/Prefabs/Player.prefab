@@ -674,6 +674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNum: 1
+  teamNum: 0
   keys: 0
   UI: {fileID: 0}
 --- !u!58 &6672107738324264243
@@ -748,6 +749,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activeSquare: {fileID: 0}
   cam: {fileID: 0}
+  speed: 2.5
   holdOffset: {x: 0.1, y: 0.1, z: 0}
   timeUntilIdle: 3
   idle: 0

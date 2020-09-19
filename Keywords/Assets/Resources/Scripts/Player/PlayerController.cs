@@ -28,11 +28,11 @@ public class PlayerController : MonoBehaviour {
     private KeyCode XButton;
     private KeyCode StartButton;
 
-    private float pMovSpeedBase = 2.2f;
+    public float speed;
     private float pMovHandleBase = 0.8f; // Player movmement "handling" when player is "slow" (within max speed)
     private float pMovHandleFast = 0.05f; // When moving fast, drag/handling
     private bool pMovDisable = false; // Disables basic movement mechanics entirely
-    private float pMovSpeed;
+    private float pMovCurrentSpeed;
     private Coroutine pMovSpeedResetCoroutine;
     private float pMovHandle; // Current value of movement handling: used to lerp velocity to input velocity (0 to 1)
     private Coroutine pMovHandleResetCoroutine;
@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviour {
         idleLF = false;
 
         // movement
-        pMovSpeed = pMovSpeedBase;
+        pMovCurrentSpeed = speed;
         pMovHandle = pMovHandleBase;
 
         // punching
@@ -319,6 +319,7 @@ public class PlayerController : MonoBehaviour {
     private void Interact() {
         bool hoveringOverGrid = activeSquare != null;
         bool holdingItem = inventory.Get() != null;
+        bool inventoryFull = inventory.Full();
         bool itemHasAction = holdingItem ? inventory.Get().GetComponent<Activatable>() : false;
         bool holdingLetterTile = holdingItem ? inventory.Get().GetComponent<Placeable>() : false;
         bool squareContainsTile = hoveringOverGrid ? activeSquare.GetComponent<GridSquare>().tile != null : false;
@@ -332,12 +333,12 @@ public class PlayerController : MonoBehaviour {
                 }
             } else if (!holdingItem && !holdingLetterTile && squareContainsTile) {
                 TakeFromSquare();
-            } else {
+            } else if (!inventoryFull) {
                 NormalGrab();
             }
         } else if (holdingItem && itemHasAction) {
             ActivateItem();
-        } else {
+        } else if (!inventoryFull) {
             NormalGrab();
         }
     }
@@ -427,10 +428,10 @@ public class PlayerController : MonoBehaviour {
 
         if (pMovDisable) return;
 
-        Vector2 move = Vector2.ClampMagnitude(new Vector2(GetAxisX, GetAxisY), 1) * pMovSpeed;
+        Vector2 move = Vector2.ClampMagnitude(new Vector2(GetAxisX, GetAxisY), 1) * pMovCurrentSpeed;
         float handling = pMovHandle;
         // When above player max speed, we let reduce control so that momentum is preserved
-        if (rb.velocity.magnitude > pMovSpeed) {
+        if (rb.velocity.magnitude > pMovCurrentSpeed) {
             handling = pMovHandleFast;
         } else {
             // can't reverse direction ezpz
@@ -443,7 +444,7 @@ public class PlayerController : MonoBehaviour {
     }
     private void DebugDash(float GetAxisX, float GetAxisY) {
         Vector2 move = Vector2.ClampMagnitude(new Vector2(GetAxisX, GetAxisY), 1);
-        rb.velocity = move * pMovSpeed * 6;
+        rb.velocity = move * pMovCurrentSpeed * 6;
     }
 
     // movement modifier access
@@ -473,22 +474,22 @@ public class PlayerController : MonoBehaviour {
         pMovHandle = value;
     }
     public float getMovSpeedBase() {
-        return pMovSpeedBase;
+        return speed;
     }
     public float getMovSpeed() {
-        return pMovSpeed;
+        return pMovCurrentSpeed;
     }
     public void setMovSpeed(float value, float duration) {
         if (pMovSpeedResetCoroutine != null) {
             StopCoroutine(pMovSpeedResetCoroutine);
         }
-        pMovSpeed = value;
-        pMovSpeedResetCoroutine = StartCoroutine(resetMovSpeed(pMovSpeedBase, duration));
+        pMovCurrentSpeed = value;
+        pMovSpeedResetCoroutine = StartCoroutine(resetMovSpeed(speed, duration));
     }
     // Coroutine: Waits duration seconds, then sets pMovSpeed to value.
     public IEnumerator resetMovSpeed(float value, float duration) {
         yield return new WaitForSeconds(duration);
-        pMovSpeed = value;
+        pMovCurrentSpeed = value;
     }
     #endregion
 
@@ -511,7 +512,7 @@ public class PlayerController : MonoBehaviour {
         // play tweety bird animation
         setMovHandle(0.004f, duration);
         setStarsActive(duration);
-        setMovSpeed(pMovSpeedBase * 0.2f, duration);
+        setMovSpeed(speed * 0.2f, duration);
         bonkSFX.Play();
         camScript.Shake(0.35f);
     }
