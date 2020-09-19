@@ -37,6 +37,6 @@ public class Door : MonoBehaviour {
     }
 
     public bool CheckLocked(int playerNum) {
-        return locked[playerNum-1];
+        return locked[playerNum - 1];
     }
 }

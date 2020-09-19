@@ -369,7 +369,7 @@ public class PlayerController : MonoBehaviour {
         if (itemToPlace.GetComponent<Flag>()) {
             GridControl gc = activeSquare.transform.parent.gameObject.GetComponent<GridControl>();
             if (gc) {
-                activeSquare.transform.parent.gameObject.GetComponent<GridControl>().SetOwnership(playerNum, gameObject);
+                gc.SetOwnership(playerNum);
             }
         }
     }

@@ -13,12 +13,9 @@ public class GridControl : MonoBehaviour {
     public bool globalGrid;
     public bool claimable;
 
-    private DoorCollisionCheck DCC;
-
     private int width;
 
     void Awake() {
-        DCC = GameObject.Find("Doors").GetComponent<DoorCollisionCheck>();
         grid = new GameObject[GetComponent<MakeGrid>().width, GetComponent<MakeGrid>().width];
         reachedTiles = new List<GameObject>();
         validWordTiles = new List<GameObject>();
@@ -42,15 +39,15 @@ public class GridControl : MonoBehaviour {
     //player is the player who just placed the tile in the grid
     public void ValidateWords(int x, int y, GameObject player) {
         validWordTiles.Clear();
-        int ownerOrMakerNum = globalGrid ? player.GetComponent<PlayerInfo>().playerNum : ownerNum; //whose made words should be added to?
+        int makerNum = player.GetComponent<PlayerInfo>().playerNum; //who made the word?
         if (grid[x, y].GetComponent<GridSquare>().GetLetter() == placeholder) {
-            ValidateWord(x - 1, y, ownerOrMakerNum, horizontal: true);
-            ValidateWord(x + 1, y, ownerOrMakerNum, horizontal: true);
-            ValidateWord(x, y - 1, ownerOrMakerNum, horizontal: false);
-            ValidateWord(x, y + 1, ownerOrMakerNum, horizontal: false);
+            ValidateWord(x - 1, y, makerNum, horizontal: true);
+            ValidateWord(x + 1, y, makerNum, horizontal: true);
+            ValidateWord(x, y - 1, makerNum, horizontal: false);
+            ValidateWord(x, y + 1, makerNum, horizontal: false);
         } else {
-            ValidateWord(x, y, ownerOrMakerNum, horizontal: true);
-            ValidateWord(x, y, ownerOrMakerNum, horizontal: false);
+            ValidateWord(x, y, makerNum, horizontal: true);
+            ValidateWord(x, y, makerNum, horizontal: false);
         }
         for (int i = 0; i < GetScore(validWordTiles.Count); i++) {
             AddKey();
@@ -61,14 +58,14 @@ public class GridControl : MonoBehaviour {
         validWordTiles.Clear();
     }
 
-    public void ValidateWord(int x, int y, int ownerOrMakerNum, bool horizontal = false) {
+    public void ValidateWord(int x, int y, int makerNum, bool horizontal = false) {
         string word;
         if (horizontal) {
             word = GetHorizontalWord(x, y);
         } else {
             word = GetVerticalWord(x, y);
         }
-        if (words.ValidateWord(word, ownerOrMakerNum, globalGrid)) {
+        if (words.ValidateWord(word, ownerNum, makerNum, globalGrid)) {
             foreach (GameObject tile in reachedTiles) {
                 if (!validWordTiles.Contains(tile)) {
                     validWordTiles.Add(tile);
@@ -79,12 +76,9 @@ public class GridControl : MonoBehaviour {
     public void AddKey() {
         if (globalGrid) {
             //give everyone a key
-            DCC.GiveKey(1);
-            DCC.GiveKey(2);
-            DCC.GiveKey(3);
-            DCC.GiveKey(4);
+            GameManager.addScoreToEveryone();
         } else {
-            DCC.GiveKey(ownerNum);
+            GameManager.addScore(ownerNum);
         }
     }
 
@@ -172,8 +166,7 @@ public class GridControl : MonoBehaviour {
         return wordLength - 4;
     }
 
-    // set the owner of the grid to the newOwner given its player number
-    public void SetOwnership(int newOwnerNum, GameObject newOwner) {
+    public void SetOwnership(int newOwnerNum) {
         if (claimable) {
             ownerNum = newOwnerNum;
             globalGrid = false;

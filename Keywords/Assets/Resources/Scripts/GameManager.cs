@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour {
 
     public Dictionary<string, AudioSource> sfx;
 
+    private DoorCollisionCheck DCC;
+
     private void Awake() {
         if (instance) {
             Destroy(gameObject);
@@ -64,6 +66,10 @@ public class GameManager : MonoBehaviour {
             }
         }
     }
+
+    private void Start() {
+        DCC = GameObject.Find("Doors").GetComponent<DoorCollisionCheck>();
+    }
     public static GameObject[] GetPlayers() {
         return instance.players;
     }
@@ -88,6 +94,10 @@ public class GameManager : MonoBehaviour {
         return instance.cameras[playerNum - 1];
     }
 
+    public static Team[] GetTeams() {
+        return instance.teams;
+    }
+
     public static Team teamByID(int id) {
         foreach (Team team in instance.teams) {
             if (team.id == id) {
@@ -96,6 +106,32 @@ public class GameManager : MonoBehaviour {
         }
         print("you passed in a team id that no team has");
         return instance.dummyTeam;
+    }
+
+    public static List<GameObject> playersInTeam(Team team) {
+        List<GameObject> result = new List<GameObject>();
+        foreach (GameObject player in instance.players) {
+            if (player.GetComponent<PlayerInfo>().teamNum == team.id) {
+                result.Add(player);
+            }
+        }
+        return result;
+    }
+
+    public static void addScoreToEveryone(int amount = 1) {
+        foreach (Team team in instance.teams) {
+            addScore(team.id, amount);
+        }
+    }
+
+    public static void addScore(int teamID, int amount = 1) {
+        Team team = teamByID(teamID);
+        team.score += amount;
+        print("setting team's score to " + team.score);
+        foreach (GameObject player in playersInTeam(team)) {
+            player.GetComponent<PlayerInfo>().SetScoreUI(team.score);
+            instance.DCC.SetDoorCollisions(player, team.score);
+        }
     }
 
     private void FindPauseMenu(Scene scene, LoadSceneMode mode) {

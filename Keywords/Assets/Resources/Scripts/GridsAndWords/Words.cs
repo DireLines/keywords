@@ -49,7 +49,7 @@ public class Words : MonoBehaviour {
     List<string> currentLevelWords;//all words it's possible to make with the letters of the current source word
     List<string> unmadeLevelWords;//all words from currentLevelWords that have not been made yet (by anybody)
     List<string> madeLevelWords;//all words from currentLevelWords that have been made (by somebody).
-    List<string>[] madeLevelWordsForEachPlayer;
+    List<string>[] madeLevelWordsForEachTeam;
     List<char> currentSourceChars;//all chars in the current source word.
     [HideInInspector]
     public int levelScore;//how fertile are the characters in the level?
@@ -87,14 +87,15 @@ public class Words : MonoBehaviour {
         currentSourceWords = GetSomeSourceWords(numLevels, minWordsForLevel, maxWordsForLevel);
         currentSourceChars = new List<char>();
         madeLevelWords = new List<string>();
-        madeLevelWordsForEachPlayer = new List<string>[4];
-        for (int i = 0; i < 4; i++) {
-            madeLevelWordsForEachPlayer[i] = new List<string>();
-        }
         UpdateLevelWords(0);
     }
 
     void Start() {
+        int numTeams = GameManager.GetTeams().Length;
+        madeLevelWordsForEachTeam = new List<string>[numTeams];
+        for (int i = 0; i < numTeams; i++) {
+            madeLevelWordsForEachTeam[i] = new List<string>();
+        }
         GetKeySFX = GameObject.Find("GetKeySFX").GetComponent<AudioSource>();
         AlreadyMadeWordSFX = GameObject.Find("AlreadyMadeWordSFX").GetComponent<AudioSource>();
         BigKeySFX = GameManager.instance.sfx["MakeLongWordSFX"];
@@ -215,12 +216,12 @@ public class Words : MonoBehaviour {
     //		add word to maker's words
     //		add word to global words
     //		return true
-    public bool ValidateWord(string word, int playerNum, bool globalGrid = false) {
-        if (playerNum < 1 || playerNum > 4) {
-            print("ValidateWord called on weird player num - returning false");
+    public bool ValidateWord(string word, int teamNum, int makerNum, bool globalGrid = false) {
+        if (teamNum < 1 || teamNum > 4) {
+            print("ValidateWord called on weird team num - returning false");
             return false;
         }
-        List<string> madeWords = madeLevelWordsForEachPlayer[playerNum - 1];
+        List<string> madeWords = madeLevelWordsForEachTeam[teamNum - 1];
         if (!globalGrid && madeWords.Contains(word)) {
             //			AlreadyMadeWordSFX.Play ();
             return false;
@@ -239,8 +240,7 @@ public class Words : MonoBehaviour {
                 GetKeySFX.Play();
             }
 
-
-            GameManager.GetTextOverlayHandler(playerNum).CreateWord(word);
+            GameManager.GetTextOverlayHandler(makerNum).CreateWord(word);
             return true;
         }
         return false;
