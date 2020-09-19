@@ -89,9 +89,6 @@ public class LetterTile : Placeable {
 
     //decrement
     public void DecLifespan() {
-        //TODO: call animation to flash this letter tile
-
-
         if (lifespan != 16) {
             SetLifespan(lifespan - 1);
         }

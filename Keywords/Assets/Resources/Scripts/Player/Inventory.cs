@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Inventory : MonoBehaviour {
     public GameObject[] items; //references to the gameobjects in inventory
     private int inventorySize = 7; //how big is the inventory?
+    private int slotsUsed = 0; //how many slots currently contain items?
     public int activeSlot;//which slot is currently active?
     private GameObject UI;//the inventory
     private const float UIScaleFactor = 28;//items in UI appear much smaller for some reason, so I just blow them up
@@ -53,12 +54,14 @@ public class Inventory : MonoBehaviour {
     }
 
     public void Add(GameObject obj) {
-        //TODO: if inventory is not full, cycle through spots until an empty slot is found, then add the objcet to that slot
-        //Currently, Add is simply not called when activeSlot has something in it
-        //while (Get()) {
-        //    IncSlot();
-        //}
+        if (Full()) {
+            return;
+        }
+        while (Get()) {
+            IncSlot();
+        }
         items[activeSlot] = obj;
+        slotsUsed++;
 
         GrapplingHook gh = obj.GetComponent<GrapplingHook>();
         if (gh) {
@@ -87,6 +90,7 @@ public class Inventory : MonoBehaviour {
     }
     public void Remove() {
         items[activeSlot] = null;
+        slotsUsed--;
 
         //remove item preview in UI
         Transform SlotUI = UI.transform.Find("Slot" + activeSlot);
@@ -99,5 +103,9 @@ public class Inventory : MonoBehaviour {
 
     public int Size() {
         return inventorySize;
+    }
+
+    public bool Full() {
+        return slotsUsed == inventorySize;
     }
 }
