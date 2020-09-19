@@ -317,7 +317,6 @@ public class PlayerController : MonoBehaviour {
 
     #region interact
     private void Interact() {
-        //		print ("interacting");
         bool hoveringOverGrid = activeSquare != null;
         bool holdingItem = inventory.Get() != null;
         bool inventoryFull = inventory.Full();
@@ -338,14 +337,14 @@ public class PlayerController : MonoBehaviour {
                 NormalGrab();
             }
         } else if (holdingItem && itemHasAction) {
-            PerformItemAction();
+            ActivateItem();
         } else if (!inventoryFull) {
             NormalGrab();
         }
     }
 
-    private void PerformItemAction() {
-        //print("performing super cool item action");
+    private void ActivateItem() {
+        inventory.Get().GetComponent<Activatable>().Activate();
     }
     private void Drop() {
         GameObject itemToDrop = inventory.Get();
