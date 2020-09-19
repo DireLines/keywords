@@ -319,7 +319,6 @@ public class PlayerController : MonoBehaviour {
     private void Interact() {
         bool hoveringOverGrid = activeSquare != null;
         bool holdingItem = inventory.Get() != null;
-        bool inventoryFull = inventory.Full();
         bool itemHasAction = holdingItem ? inventory.Get().GetComponent<Activatable>() : false;
         bool holdingLetterTile = holdingItem ? inventory.Get().GetComponent<Placeable>() : false;
         bool squareContainsTile = hoveringOverGrid ? activeSquare.GetComponent<GridSquare>().tile != null : false;
@@ -333,12 +332,12 @@ public class PlayerController : MonoBehaviour {
                 }
             } else if (!holdingItem && !holdingLetterTile && squareContainsTile) {
                 TakeFromSquare();
-            } else if (!inventoryFull) {
+            } else {
                 NormalGrab();
             }
         } else if (holdingItem && itemHasAction) {
             ActivateItem();
-        } else if (!inventoryFull) {
+        } else {
             NormalGrab();
         }
     }

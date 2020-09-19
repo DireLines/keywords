@@ -3673,7 +3673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d8238cc53530b64fbb7828c3d3bb591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1580477938}
+  target: {fileID: 224411140}
   damping: 0.2
   lookAheadFactor: 0
   lookAheadReturnSpeed: 0.5
@@ -3720,8 +3720,8 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0
+    x: 0.5
+    y: 0.5
     width: 0.5
     height: 0.5
   near clip plane: 0.3
@@ -4065,7 +4065,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d8238cc53530b64fbb7828c3d3bb591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 224411140}
+  target: {fileID: 1580477938}
   damping: 0.2
   lookAheadFactor: 0
   lookAheadReturnSpeed: 0.5
@@ -4112,8 +4112,8 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.5
-    y: 0.5
+    x: 0
+    y: 0
     width: 0.5
     height: 0.5
   near clip plane: 0.3
