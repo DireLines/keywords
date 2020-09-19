@@ -504,7 +504,10 @@ public class PlayerController : MonoBehaviour {
 
     }
 
-    public void Bonk(Vector2 dir, float duration) {
+    public bool Bonk(Vector2 dir, float duration, int bonkingTeamNum = -1) {
+        if (bonkingTeamNum == me.teamNum) {
+            return false;
+        }
         bonkSFX = GameManager.instance.sfx["BonkSFX"];
         DropAll(dir);
         rb.velocity = dir.normalized * 0.5f;
@@ -515,6 +518,7 @@ public class PlayerController : MonoBehaviour {
         setMovSpeed(speed * 0.2f, duration);
         bonkSFX.Play();
         camScript.Shake(0.35f);
+        return true;
     }
     public void setStarsActive(float duration) {
         if (bonkedResetCoroutine != null) {

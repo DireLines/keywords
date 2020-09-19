@@ -14,14 +14,12 @@ public class GridControl : MonoBehaviour {
     public bool globalGrid;
     public bool claimable;
 
-    private GameObject doors;//door container object
     private DoorCollisionCheck DCC;
 
     private int width;
 
     void Awake() {
-        doors = GameObject.Find("Doors");
-        DCC = doors.GetComponent<DoorCollisionCheck>();
+        DCC = GameObject.Find("Doors").GetComponent<DoorCollisionCheck>();
         grid = new GameObject[GetComponent<MakeGrid>().width, GetComponent<MakeGrid>().width];
         reachedTiles = new List<GameObject>();
         validWordTiles = new List<GameObject>();

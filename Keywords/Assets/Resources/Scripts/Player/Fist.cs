@@ -40,8 +40,9 @@ public class Fist : MonoBehaviour {
 
     public void OnTriggerEnter2D(Collider2D collision) {
         if (collision.CompareTag("Player")) {
-            punchCooldown.SetCooldown(hitCooldownTime);
-            collision.GetComponent<PlayerController>().Bonk(dir, stun_duration);
+            if (collision.GetComponent<PlayerController>().Bonk(dir, stun_duration, GetComponentInParent<PlayerInfo>().teamNum)) {
+                punchCooldown.SetCooldown(hitCooldownTime);
+            }
         }
     }
 }
