@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour {
     public PauseMenu pauseMenu;
 
     public Team[] teams;
+    private Team dummyTeam;
 
     public Dictionary<string, AudioSource> sfx;
 
@@ -85,6 +86,16 @@ public class GameManager : MonoBehaviour {
 
     public static Camera GetCamera(int playerNum) {
         return instance.cameras[playerNum - 1];
+    }
+
+    public static Team teamByID(int id) {
+        foreach (Team team in instance.teams) {
+            if (team.id == id) {
+                return team;
+            }
+        }
+        print("you passed in a team id that no team has");
+        return instance.dummyTeam;
     }
 
     private void FindPauseMenu(Scene scene, LoadSceneMode mode) {

@@ -10,7 +10,6 @@ public class GridControl : MonoBehaviour {
     private Words words;
     private AudioSource getKeySource;
     public int ownerNum;
-    private GameObject owner;
     public bool globalGrid;
     public bool claimable;
 
@@ -31,9 +30,8 @@ public class GridControl : MonoBehaviour {
         getKeySource = GameObject.Find("GetKeySFX").GetComponent<AudioSource>();
         globalGrid = ownerNum == 0;
         if (!globalGrid) {
-            owner = GameObject.Find("Player" + ownerNum);
             //recolor grid squares
-            Color ownerColor = owner.GetComponent<SpriteRenderer>().color;
+            Color ownerColor = GameManager.teamByID(ownerNum).color;
             foreach (Transform child in transform) {
                 child.gameObject.GetComponent<GridSquare>().SetColor(ownerColor);
             }
@@ -178,7 +176,6 @@ public class GridControl : MonoBehaviour {
     public void SetOwnership(int newOwnerNum, GameObject newOwner) {
         if (claimable) {
             ownerNum = newOwnerNum;
-            owner = newOwner;
             globalGrid = false;
         }
     }
