@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public struct Team {
+public class Team {
     public Color color;
     public int id;
     public int score;

@@ -127,7 +127,6 @@ public class GameManager : MonoBehaviour {
     public static void addScore(int teamID, int amount = 1) {
         Team team = teamByID(teamID);
         team.score += amount;
-        print("setting team's score to " + team.score);
         foreach (GameObject player in playersInTeam(team)) {
             player.GetComponent<PlayerInfo>().SetScoreUI(team.score);
             instance.DCC.SetDoorCollisions(player, team.score);
