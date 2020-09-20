@@ -34,7 +34,7 @@ public class Dash : Fireable {
         dashing = true;
         dashSFX = GameManager.instance.sfx["DashSFX"];
         dashSFX.Play();
-        Instantiate(particles,rb.position,Quaternion.LookRotation(Vector3.forward, new Vector3(v.x, v.y, 0)),null);
+        Instantiate(particles, rb.position, Quaternion.LookRotation(Vector3.forward, new Vector3(v.x, v.y, 0)), null);
         while (t < .25f) {
             rb.velocity = v * dashSpeed;
             t += Time.deltaTime;
@@ -47,7 +47,10 @@ public class Dash : Fireable {
     private void HitPlayer(Collision2D collision) {
         if (dashing) {
             if (collision.collider.CompareTag("Player")) {
-                collision.collider.GetComponent<PlayerController>().Bonk((collision.collider.transform.position - player_controller.transform.position).normalized, stun_duration);
+                collision.collider.GetComponent<PlayerController>().Bonk(
+                    (collision.collider.transform.position - player_controller.transform.position).normalized,
+                    stun_duration, player_controller.gameObject.GetComponent<PlayerInfo>().teamNum
+                );
             }
         }
     }

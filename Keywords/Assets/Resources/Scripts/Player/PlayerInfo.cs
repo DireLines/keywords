@@ -6,17 +6,16 @@ using UnityEngine.UI;
 public class PlayerInfo : MonoBehaviour {
 
     public int playerNum;
-    public int keys;//how many keys does the player have?
+    public int teamNum;
     public GameObject UI;//this player's UI;
-    private TMPro.TextMeshProUGUI keyUI;//UI which displays how many keys the player has
+    private TMPro.TextMeshProUGUI scoreUI;//UI which displays how many keys the player has
 
     private void Start() {
-        keyUI = UI.transform.Find("Keys").gameObject.GetComponent<TMPro.TextMeshProUGUI>();
+        scoreUI = UI.transform.Find("Keys").gameObject.GetComponent<TMPro.TextMeshProUGUI>();
     }
 
-    public void IncKeys() {
-        keys++;
-        keyUI.text = keys.ToString();
+    public void SetScoreUI(int score) {
+        scoreUI.text = score.ToString();
     }
 
     public KeyCode GetKeyCode(string controlName) {
@@ -204,5 +203,9 @@ public class PlayerInfo : MonoBehaviour {
             print("axis name not recognized");
             return 0f;
         }
+    }
+
+    public Color GetTeamColor() {
+        return GameManager.teamByID(teamNum).color;
     }
 }

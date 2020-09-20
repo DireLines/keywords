@@ -23,11 +23,6 @@ public class LetterTile : Placeable {
         letterSprite = transform.FindDeepChild("LetterSprite").gameObject;
         numberSprite = transform.FindDeepChild("NumberSprite").gameObject;
         DestroyTileSFX = GameManager.instance.sfx["DestroyTileSFX"];
-        //		SetLetter (words.GetRandomSourceChar ());
-        //		SetLetter ((char)Random.Range (97, 123));
-        //		SetMatches (Random.Range(3,9));
-        //		Dec ();
-
     }
 
     public override void PlaceOn(GameObject square, GameObject placingPlayer) {
@@ -89,9 +84,6 @@ public class LetterTile : Placeable {
 
     //decrement
     public void DecLifespan() {
-        //TODO: call animation to flash this letter tile
-
-
         if (lifespan != 16) {
             SetLifespan(lifespan - 1);
         }

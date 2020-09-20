@@ -28,11 +28,11 @@ public class PlayerController : MonoBehaviour {
     private KeyCode XButton;
     private KeyCode StartButton;
 
-    private float pMovSpeedBase = 2.2f;
+    public float speed;
     private float pMovHandleBase = 0.8f; // Player movmement "handling" when player is "slow" (within max speed)
     private float pMovHandleFast = 0.05f; // When moving fast, drag/handling
     private bool pMovDisable = false; // Disables basic movement mechanics entirely
-    private float pMovSpeed;
+    private float pMovCurrentSpeed;
     private Coroutine pMovSpeedResetCoroutine;
     private float pMovHandle; // Current value of movement handling: used to lerp velocity to input velocity (0 to 1)
     private Coroutine pMovHandleResetCoroutine;
@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviour {
         idleLF = false;
 
         // movement
-        pMovSpeed = pMovSpeedBase;
+        pMovCurrentSpeed = speed;
         pMovHandle = pMovHandleBase;
 
         // punching
@@ -136,7 +136,7 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetKeyDown(StartButton)) {
             GameManager.instance.pauseMenu.Toggle();
         }
-        if (GameManager.instance.pauseMenu.GetPaused()) {
+        if (GameManager.instance.pauseMenu.Paused()) {
             float lsVert = GetAxis("Vertical");
             if (!ls_pressed && Mathf.Abs(lsVert) > lsPressThreshold) {
                 ls_pressed = true;
@@ -316,36 +316,15 @@ public class PlayerController : MonoBehaviour {
     #endregion
 
     #region interact
-    //pseudocode of this:
-    /*
-	x = is player hovering over a grid square?
-	y = is player currently holding something in inventory?
-	z = is player holding a letter tile?
-	w = is there a letter tile on the grid square?
-
-
-	x y z w : swap inventory item with thing on the square
-	x y z !w : place inventory item on the square 
-	x y !z !w : Perform item’s action
-	x !y !z w : take tile on square into inventory
-	x !y !z !w : normal grab
-	!x y !z !w : Perform item’s action
-	!x !y !z !w : normal grab
-
-	all other combinations are impossible or should do nothing
-	 */
     private void Interact() {
-        //		print ("interacting");
-        bool hoveringOverGrid = (activeSquare != null);
-        bool holdingItem = (inventory.Get() != null);
+        bool hoveringOverGrid = activeSquare != null;
+        bool holdingItem = inventory.Get() != null;
+        bool inventoryFull = inventory.Full();
+        bool itemHasAction = holdingItem ? inventory.Get().GetComponent<Activatable>() : false;
         bool holdingLetterTile = holdingItem ? inventory.Get().GetComponent<Placeable>() : false;
         bool squareContainsTile = hoveringOverGrid ? activeSquare.GetComponent<GridSquare>().tile != null : false;
 
-        if (!holdingItem && !holdingLetterTile && !squareContainsTile) {
-            NormalGrab();
-        } else if (holdingItem && !holdingLetterTile && !squareContainsTile) {
-            PerformItemAction();
-        } else if (hoveringOverGrid) {
+        if (hoveringOverGrid) {
             if (holdingItem && holdingLetterTile) {
                 if (squareContainsTile) {
                     SwapWithSquare();
@@ -354,14 +333,20 @@ public class PlayerController : MonoBehaviour {
                 }
             } else if (!holdingItem && !holdingLetterTile && squareContainsTile) {
                 TakeFromSquare();
+            } else if (!inventoryFull) {
+                NormalGrab();
             }
+        } else if (holdingItem && itemHasAction) {
+            ActivateItem();
+        } else if (!inventoryFull) {
+            NormalGrab();
         }
     }
-    private void PerformItemAction() {
-        //print("performing super cool item action");
+
+    private void ActivateItem() {
+        inventory.Get().GetComponent<Activatable>().Activate();
     }
     private void Drop() {
-        //		print ("dropping");
         GameObject itemToDrop = inventory.Get();
         if (itemToDrop != null) {
             itemToDrop.transform.SetParent(TileContainer.transform);
@@ -374,7 +359,6 @@ public class PlayerController : MonoBehaviour {
         }
     }
     private void PlaceOnSquare() {
-        //		print ("placing tile on square");
         GameObject itemToPlace = inventory.Get();
         itemToPlace.transform.SetParent(activeSquare.transform);
         itemToPlace.transform.position = activeSquare.transform.position;
@@ -385,14 +369,12 @@ public class PlayerController : MonoBehaviour {
         if (itemToPlace.GetComponent<Flag>()) {
             GridControl gc = activeSquare.transform.parent.gameObject.GetComponent<GridControl>();
             if (gc) {
-                activeSquare.transform.parent.gameObject.GetComponent<GridControl>().SetOwnership(playerNum, gameObject);
+                gc.SetOwnership(playerNum);
             }
         }
     }
 
     private void TakeFromSquare() {
-        //		print ("taking from square");
-        //if (activeSquare.GetComponent<GridSquare>().)
         GameObject itemToTake = activeSquare.GetComponent<GridSquare>().tile;
         itemToTake.transform.SetParent(transform);
         inventory.Add(itemToTake);
@@ -404,7 +386,6 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void SwapWithSquare() {
-        //		print ("swapping tile with square");
         GameObject temp = activeSquare.GetComponent<GridSquare>().tile;
         temp.transform.SetParent(transform);
         temp.transform.localPosition = holdOffset;
@@ -415,7 +396,6 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void NormalGrab() {
-        //		print ("grabbing");
         //pick up nearest item within pickup radius
         GameObject closestObject = Game.ClosestItemInRadius(transform.position, pickupRadius);
         if (closestObject == null) {
@@ -429,7 +409,6 @@ public class PlayerController : MonoBehaviour {
             closestObject.GetComponent<Fireable>().PickUp(gameObject);
         }
         //put item in inventory
-        //inventory.Add(closestObject);
         closestObject.transform.SetParent(transform);
         inventory.Add(closestObject);
         closestObject.transform.localPosition = holdOffset;
@@ -449,10 +428,10 @@ public class PlayerController : MonoBehaviour {
 
         if (pMovDisable) return;
 
-        Vector2 move = Vector2.ClampMagnitude(new Vector2(GetAxisX, GetAxisY), 1) * pMovSpeed;
+        Vector2 move = Vector2.ClampMagnitude(new Vector2(GetAxisX, GetAxisY), 1) * pMovCurrentSpeed;
         float handling = pMovHandle;
         // When above player max speed, we let reduce control so that momentum is preserved
-        if (rb.velocity.magnitude > pMovSpeed) {
+        if (rb.velocity.magnitude > pMovCurrentSpeed) {
             handling = pMovHandleFast;
         } else {
             // can't reverse direction ezpz
@@ -465,7 +444,7 @@ public class PlayerController : MonoBehaviour {
     }
     private void DebugDash(float GetAxisX, float GetAxisY) {
         Vector2 move = Vector2.ClampMagnitude(new Vector2(GetAxisX, GetAxisY), 1);
-        rb.velocity = move * pMovSpeed * 6;
+        rb.velocity = move * pMovCurrentSpeed * 6;
     }
 
     // movement modifier access
@@ -495,22 +474,22 @@ public class PlayerController : MonoBehaviour {
         pMovHandle = value;
     }
     public float getMovSpeedBase() {
-        return pMovSpeedBase;
+        return speed;
     }
     public float getMovSpeed() {
-        return pMovSpeed;
+        return pMovCurrentSpeed;
     }
     public void setMovSpeed(float value, float duration) {
         if (pMovSpeedResetCoroutine != null) {
             StopCoroutine(pMovSpeedResetCoroutine);
         }
-        pMovSpeed = value;
-        pMovSpeedResetCoroutine = StartCoroutine(resetMovSpeed(pMovSpeedBase, duration));
+        pMovCurrentSpeed = value;
+        pMovSpeedResetCoroutine = StartCoroutine(resetMovSpeed(speed, duration));
     }
     // Coroutine: Waits duration seconds, then sets pMovSpeed to value.
     public IEnumerator resetMovSpeed(float value, float duration) {
         yield return new WaitForSeconds(duration);
-        pMovSpeed = value;
+        pMovCurrentSpeed = value;
     }
     #endregion
 
@@ -525,7 +504,10 @@ public class PlayerController : MonoBehaviour {
 
     }
 
-    public void Bonk(Vector2 dir, float duration) {
+    public bool Bonk(Vector2 dir, float duration, int bonkingTeamNum = -1) {
+        if (bonkingTeamNum == me.teamNum) {
+            return false;
+        }
         bonkSFX = GameManager.instance.sfx["BonkSFX"];
         DropAll(dir);
         rb.velocity = dir.normalized * 0.5f;
@@ -533,9 +515,10 @@ public class PlayerController : MonoBehaviour {
         // play tweety bird animation
         setMovHandle(0.004f, duration);
         setStarsActive(duration);
-        setMovSpeed(pMovSpeedBase * 0.2f, duration);
+        setMovSpeed(speed * 0.2f, duration);
         bonkSFX.Play();
         camScript.Shake(0.35f);
+        return true;
     }
     public void setStarsActive(float duration) {
         if (bonkedResetCoroutine != null) {
@@ -553,25 +536,6 @@ public class PlayerController : MonoBehaviour {
 
 
     private void DropAll(Vector2 dir) {
-        //iterate over inventory slots
-        /*
-         * itemstoscatter = list<gameobject>
-         * for each slot:
-         *      if(item):
-         *          put ref into itemstoscatter
-         *          remove item
-         * for each item in itemstoscatter:
-         *      determine direction and distance
-         *      if (rigidbody and dynamic):
-         *          set velocity with dir and distance (scaled to drag)
-         *      else
-         *          raycast in direction
-         *          if you run into something
-         *              set the distance accordingly
-         *          lerp position
-         *   
-        */
-        //float maxDropDistance = 10f;
         List<GameObject> itemsToScatter = new List<GameObject>();
         for (int i = 0; i < inventory.Size(); i++) {
             GameObject item = inventory.Get();
@@ -587,7 +551,6 @@ public class PlayerController : MonoBehaviour {
             Rigidbody2D item_rb = item.GetComponent<Rigidbody2D>();
             if (item_rb && !item_rb.isKinematic) {
                 float rb_scaleFactor = 10000f;
-                //item_rb.velocity = targetVector * item_rb.drag * rb_scaleFactor;
                 item_rb.velocity = targetVector * rb_scaleFactor;
             } else {
                 RaycastHit2D[] hits = Physics2D.RaycastAll(item.transform.position, targetVector.normalized, targetVector.magnitude);

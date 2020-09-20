@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fireable : MonoBehaviour {
+public class Fireable : Activatable {
     public Cooldown cooldown;
     public float cooldownTime = 0f;
 
