@@ -1,7 +1,3 @@
--2v2 mode stuff
-	-Grid ownership team-based
-	-score team-based
-		-UI reflects that
 -Menus
 	-accept controller input for clicking button
 	-accept keyboard/mouse input for going between buttons
@@ -23,6 +19,7 @@
 	-PVP is kind of pointless, detrimental to both involved
 		-make items more scarce?
 	-countermeasure for stealing tiles : it should take a while (~5 sec) to pick up a tile if owned by somebody who is not you
+	-
 -Grappling hook
 	-make chain visible
 	-make it grab letters / players(?)

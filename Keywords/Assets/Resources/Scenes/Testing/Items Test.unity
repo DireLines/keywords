@@ -2961,6 +2961,11 @@ PrefabInstance:
       propertyPath: UI
       value: 
       objectReference: {fileID: 193016911}
+    - target: {fileID: 6672107738324264240, guid: 25d26f1ffb97540048bf7196146c6dfa,
+        type: 3}
+      propertyPath: teamNum
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6672107738324264247, guid: 25d26f1ffb97540048bf7196146c6dfa,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3071,6 +3076,11 @@ PrefabInstance:
       propertyPath: UI
       value: 
       objectReference: {fileID: 23488818}
+    - target: {fileID: 6672107738324264240, guid: 25d26f1ffb97540048bf7196146c6dfa,
+        type: 3}
+      propertyPath: teamNum
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6672107738324264244, guid: 25d26f1ffb97540048bf7196146c6dfa,
         type: 3}
       propertyPath: doors
@@ -3389,6 +3399,11 @@ PrefabInstance:
       propertyPath: UI
       value: 
       objectReference: {fileID: 333296482}
+    - target: {fileID: 6672107738324264240, guid: 25d26f1ffb97540048bf7196146c6dfa,
+        type: 3}
+      propertyPath: teamNum
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6672107738324264244, guid: 25d26f1ffb97540048bf7196146c6dfa,
         type: 3}
       propertyPath: doors
@@ -6860,8 +6875,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24e97317da1214185ad745df1773f47e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coop: 0
+  mode: Versus
   width: 50
+  presetRooms:
+  - name: Central Chamber
+    id: -5
+    x: 0
+    y: 0
+    width: 7
+    height: 7
+  - name: Player 1 Start
+    id: -1
+    x: -6
+    y: -6
+    width: 3
+    height: 3
+  - name: Player 2 Start
+    id: -2
+    x: 6
+    y: -6
+    width: 3
+    height: 3
+  - name: Player 3 Start
+    id: -3
+    x: -6
+    y: 6
+    width: 3
+    height: 3
+  - name: Player 4 Start
+    id: -4
+    x: 6
+    y: 6
+    width: 3
+    height: 3
   DoorContainer: {fileID: 541289253}
   WallContainer: {fileID: 95303994}
   TileContainer: {fileID: 1350805110}
@@ -7005,6 +7051,19 @@ MonoBehaviour:
   - {fileID: 545235387}
   - {fileID: 987614327}
   pauseMenu: {fileID: 1344598364}
+  teams:
+  - color: {r: 1, g: 0.6627451, b: 0.67058825, a: 1}
+    id: 1
+    score: 0
+  - color: {r: 0.7058824, g: 1, b: 0.5647059, a: 1}
+    id: 2
+    score: 0
+  - color: {r: 0.67058825, g: 0.91764706, b: 1, a: 1}
+    id: 3
+    score: 0
+  - color: {r: 0.9843137, g: 0.8862745, b: 0.4627451, a: 1}
+    id: 4
+    score: 0
 --- !u!114 &1569157450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7828,6 +7887,11 @@ PrefabInstance:
       propertyPath: UI
       value: 
       objectReference: {fileID: 328264681}
+    - target: {fileID: 6672107738324264240, guid: 25d26f1ffb97540048bf7196146c6dfa,
+        type: 3}
+      propertyPath: teamNum
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6672107738324264244, guid: 25d26f1ffb97540048bf7196146c6dfa,
         type: 3}
       propertyPath: doors
