@@ -10,7 +10,6 @@ public class DoorCollisionCheck : MonoBehaviour {
         doors = transform;
     }
     public void SetDoorCollisions(GameObject playerObj, int numKeys) {
-        print("set door collisions(" + playerObj + ", " + numKeys + ")");
         PlayerInfo player = playerObj.GetComponent<PlayerInfo>();
         int playerNum = player.playerNum;
         foreach (Transform child in doors) {
