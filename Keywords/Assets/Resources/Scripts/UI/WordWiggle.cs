@@ -13,8 +13,10 @@ public class WordWiggle : MonoBehaviour {
     private Vector3[] initialPositionData;
     private bool wiggling = false;
 
-    private void Awake() {
-        RectTransform[] transforms = this.transform.GetComponentsInChildren<RectTransform>();
+    private RectTransform[] transforms;
+
+    private void Start() {
+        transforms = transform.GetComponentsInChildren<RectTransform>();
         initialPositionData = new Vector3[transforms.Length];
 
         // Fill in intiial position data
@@ -25,11 +27,9 @@ public class WordWiggle : MonoBehaviour {
 
     private void Update() {
         if (wiggling) {
-            RectTransform[] transforms = this.transform.GetComponentsInChildren<RectTransform>();
-
             for (int i = 0; i < transforms.Length; ++i) {
-                Vector3 offset = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
-                offset *= wiggleIntensity;
+                Vector3 offset = Random.insideUnitCircle * wiggleIntensity;
+                //offset *= wiggleIntensity;
                 transforms[i].localPosition = initialPositionData[i] + offset;
             }
         }
@@ -41,11 +41,10 @@ public class WordWiggle : MonoBehaviour {
 
     public void StopWiggle() {
         wiggling = false;
-        ResetPositions();
+        //ResetPositions();
     }
 
     public void ResetPositions() {
-        RectTransform[] transforms = this.transform.GetComponentsInChildren<RectTransform>();
         for (int i = 0; i < transforms.Length; ++i) {
             transforms[i].localPosition = initialPositionData[i];
         }

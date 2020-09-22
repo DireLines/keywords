@@ -8,10 +8,12 @@ public class MainMenu : MonoBehaviour {
     private GameObject MainMenuUI;
     private GameObject CreditsUI;
     private bool creditsActive = false;
+    private Button[] mainMenuButtons;
 
     private void Start() {
         MainMenuUI = transform.Find("MainMenu").gameObject;
         CreditsUI = transform.Find("CreditsMenu").gameObject;
+        mainMenuButtons = MainMenuUI.GetComponentsInChildren<Button>();
     }
 
     public void ShowCredits() {

@@ -200,24 +200,8 @@ public class Words : MonoBehaviour {
         return vowels[Random.Range(0, vowels.Length)];
     }
 
-    //if not global grid:
-    //	if owner's made words contains word:
-    //		return false
-    //	else if word is valid:
-    //		add word to owner's words
-    //		add word to global words
-    //		return true
-    //	else:
-    //		return false
-    //else:
-    //	if global words contains word:
-    //		return false
-    //	else if word is valid:
-    //		add word to maker's words
-    //		add word to global words
-    //		return true
     public bool ValidateWord(string word, int teamNum, int makerNum, bool globalGrid = false) {
-        if (teamNum < 1 || teamNum > 4) {
+        if ((teamNum < 1 || teamNum > 4) && !globalGrid) {
             print("ValidateWord called on weird team num - returning false");
             return false;
         }

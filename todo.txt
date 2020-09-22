@@ -1,5 +1,4 @@
 -Menus
-	-accept controller input for clicking button
 	-accept keyboard/mouse input for going between buttons
 	-Loading screen
 	-Pause menu - music/SFX vol sliders
@@ -46,3 +45,8 @@
 		--reeling in
 	--machines should hum faintly with spatial blend when charging
 	--bonk - quiet tweeting birds while stunned
+-more features from design doc
+-networked version
+	-server client architecture (Mirror seems ok)
+	-generalize to any number of players
+	-matchmaking UI
