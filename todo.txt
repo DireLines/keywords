@@ -13,6 +13,7 @@
 		-runners-up ranked by score
 		-New Game
 		-Quit
+-inconsequential change
 -cooldown indicator in UI slot
 -Balance
 	-PVP is kind of pointless, detrimental to both involved
