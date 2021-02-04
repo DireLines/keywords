@@ -9,14 +9,15 @@
 			-and make doors to the central room take about 40 words to enter
 		-If time, add multiple floors
 	-Win screen
-		-Player X has Won the Game!
+		-Player X has Won the Game! / Team X has Won the Game!
 		-runners-up ranked by score
-		-New Game
-		-Quit
+		-Play Again
+		-Main Menu
 -cooldown indicator in UI slot
 -Balance
 	-PVP is kind of pointless, detrimental to both involved
-		-make items more scarce?
+		-make letter tiles more scarce
+		-currently overflowing with letter tiles, limited mostly by how quickly you can think of words
 	-countermeasure for stealing tiles : it should take a while (~5 sec) to pick up a tile if owned by somebody who is not you
     -Doors:
         -Make them wider (little kid new to games had trouble getting through)
@@ -30,10 +31,13 @@
 		-items should go back in their original transform, not always letter tile container
 	-dash item gets broken by switching to diff inventory item during dash
 	-if switch away from grappling hook while hook is out, cancel the grappling hook shot
-	-bonking ejects player away from letter tiles
+	-bonking ejects player away from dropped letter tiles
 		-probably because of high linear drag on letter tiles
 	-flag doesnt change color when you pick it up from a non-claimable grid
 	-pressing the select button does not select the first time it is pressed upon loading a scene
+	-weird bug where letter tile is placed on grid but stays in inventory and breaks shit
+		-it has happened when loading the game scene a second time, but that went away at some point
+		-it has happened when placing a special letter tile on a neutral 4x4 grid
 -Sprites to change
 	-Grappling hook
 		-Chain
