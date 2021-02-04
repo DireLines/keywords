@@ -1,7 +1,4 @@
 TODO:
-    -Doors:
-        -Make them wider (little kid new to games had trouble getting through)
-        -Display number of keys needed to open the door
     -Dungeons:
         -debug border placement
         -place doors intelligently

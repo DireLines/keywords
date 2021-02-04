@@ -403,9 +403,10 @@ public class DungeonGenerator : MonoBehaviour {
     }
 
     void PlaceFogOfWar() {
+        int buffer = 5;
         // print("placing fog of war objects");
-        for (int x = -3; x < width + 3; x++) {
-            for (int y = -3; y < width + 3; y++) {
+        for (int x = -buffer; x < width + buffer; x++) {
+            for (int y = -buffer; y < width + buffer; y++) {
                 PlaceFogOfWarAt(x, y);
             }
         }
