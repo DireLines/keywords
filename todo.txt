@@ -27,6 +27,11 @@
 	-make it grab letters / players(?)
 	-handle colliding with things that aren't walls
 -Bugs
+	-volume sliders do not affect volume
+	-what's going on with debug player movement? make it work like
+		-num keys 1-4 affect which player is keyboard controlled
+		-num keys 1-4 affect which player is controlled by controller 1
+	-sometimes grid square is highlighted but player can't interact with it. why?
 	-Setting down items
 		-items should go back in their original transform, not always letter tile container
 	-dash item gets broken by switching to diff inventory item during dash
@@ -35,9 +40,11 @@
 		-probably because of high linear drag on letter tiles
 	-flag doesnt change color when you pick it up from a non-claimable grid
 	-pressing the select button does not select the first time it is pressed upon loading a scene
+	-somehow some inventory stuff happened which disabled use of fireables on a fireable
 	-weird bug where letter tile is placed on grid but stays in inventory and breaks shit
 		-it has happened when loading the game scene a second time, but that went away at some point
 		-it has happened when placing a special letter tile on a neutral 4x4 grid
+		-probably caused by interaction of team code and neutral grid code
 -Sprites to change
 	-Grappling hook
 		-Chain
