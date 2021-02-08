@@ -1,7 +1,7 @@
 -Menus
-	-accept keyboard/mouse input for going between buttons
+	-start highlighting buttons on mouseover
 	-Loading screen
-	-Pause menu - music/SFX vol sliders
+	-add music/SFX vol sliders in pause menu
 -Game loop
 	-Win condition
 		-First to 50 words

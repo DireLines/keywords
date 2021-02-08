@@ -128,10 +128,6 @@ public class PlayerController : MonoBehaviour {
     #region update
     // Update is called once per frame
     void Update() {
-        stars = transform.Find("Stars").gameObject;
-        foreach (Transform star in stars.transform) {
-            star.gameObject.GetComponent<Star>().Circle(transform.position);
-        }
         // Pause menu
         if (Input.GetKeyDown(StartButton)) {
             GameManager.instance.pauseMenu.Toggle();
@@ -149,14 +145,18 @@ public class PlayerController : MonoBehaviour {
             return;
         }
 
+        stars = transform.Find("Stars").gameObject;
+        foreach (Transform star in stars.transform) {
+            star.gameObject.GetComponent<Star>().Circle(transform.position);
+        }
+
         if (allInputDisabled) {
             return;
         }
 
         //aiming and firing
-        Vector2 aim_raw;
+        Vector2 aim_raw = new Vector2(0, 0);
         if (playerNum == keyboardControlledPlayer) {
-            aim_raw = new Vector2(0, 0);
             if (Input.GetKey(KeyCode.I)) {
                 aim_raw.y += 1;
             }
@@ -169,7 +169,8 @@ public class PlayerController : MonoBehaviour {
             if (Input.GetKey(KeyCode.L)) {
                 aim_raw.x += 1;
             }
-        } else {
+        }
+        if (aim_raw == new Vector2(0, 0)) {
             aim_raw = new Vector2(GetAxis("Horizontal_R"), GetAxis("Vertical_R"));
         }
         aim_raw = Vector2.ClampMagnitude(aim_raw, 1.0f);
@@ -185,7 +186,7 @@ public class PlayerController : MonoBehaviour {
 
         bool keyboardFire = false;
         if (playerNum == keyboardControlledPlayer) {
-            keyboardFire = Input.GetKeyDown(KeyCode.O);
+            keyboardFire = Input.GetKeyDown(KeyCode.Space);
         }
         float trigger = GetAxis("RTrigger");
         if ((!rt_pressed && trigger > triggerPressThreshold) || keyboardFire) {
@@ -300,8 +301,8 @@ public class PlayerController : MonoBehaviour {
     void FixedUpdate() {
         float axisX, axisY;
         if (playerNum == keyboardControlledPlayer) {
-            axisX = Input.GetAxisRaw("Horizontal");
-            axisY = Input.GetAxisRaw("Vertical");
+            axisX = Input.GetAxisRaw("DebugHorizontal");
+            axisY = Input.GetAxisRaw("DebugVertical");
         } else {
             axisX = GetAxis("Horizontal");
             axisY = GetAxis("Vertical");
