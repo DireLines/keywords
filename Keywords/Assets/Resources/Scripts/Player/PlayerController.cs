@@ -132,7 +132,7 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetKeyDown(StartButton)) {
             GameManager.instance.pauseMenu.Toggle();
         }
-        if (GameManager.instance.pauseMenu.Paused()) {
+        if (Game.Paused()) {
             float lsVert = GetAxis("Vertical");
             if (!ls_pressed && Mathf.Abs(lsVert) > lsPressThreshold) {
                 ls_pressed = true;
@@ -143,11 +143,6 @@ public class PlayerController : MonoBehaviour {
                 }
             }
             return;
-        }
-
-        stars = transform.Find("Stars").gameObject;
-        foreach (Transform star in stars.transform) {
-            star.gameObject.GetComponent<Star>().Circle(transform.position);
         }
 
         if (allInputDisabled) {
