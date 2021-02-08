@@ -18,7 +18,7 @@ InputManager:
     sensitivity: 1
     snap: 0
     invert: 0
-    type: 2
+    type: 0
     axis: 0
     joyNum: 0
   - serializedVersion: 3
@@ -217,8 +217,8 @@ InputManager:
     m_Name: Vertical
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: s
-    positiveButton: w
+    negativeButton: w
+    positiveButton: s
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0
@@ -226,7 +226,7 @@ InputManager:
     sensitivity: 1
     snap: 0
     invert: 1
-    type: 2
+    type: 0
     axis: 1
     joyNum: 0
   - serializedVersion: 3
@@ -868,7 +868,7 @@ InputManager:
     invert: 0
     type: 2
     axis: 0
-    joyNum: 16
+    joyNum: 0
   - serializedVersion: 3
     m_Name: Vertical
     descriptiveName: 
@@ -884,7 +884,7 @@ InputManager:
     invert: 1
     type: 2
     axis: 1
-    joyNum: 16
+    joyNum: 0
   - serializedVersion: 3
     m_Name: Fire1
     descriptiveName: 

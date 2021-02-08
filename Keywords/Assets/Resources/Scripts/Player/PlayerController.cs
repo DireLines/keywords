@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour {
 
     private int playerNum;
     private Color mycolor;
-    private int keyboardControlledPlayer = 0; //for debug / testing without controllers - one player can be controlled by the keyboard at a time;
+    private int keyboardControlledPlayer = 1; //for debug / testing without controllers - one player can be controlled by the keyboard at a time;
 
     //Idle variables
     public float timeUntilIdle = 3f;
