@@ -1,5 +1,4 @@
 -Menus
-	-start highlighting buttons on mouseover
 	-Loading screen
 	-add music/SFX vol sliders in pause menu
 -Game loop
