@@ -14,9 +14,7 @@
 		-Main Menu
 -cooldown indicator in UI slot
 -Balance
-	-PVP is kind of pointless, detrimental to both involved
-		-make letter tiles more scarce
-		-currently overflowing with letter tiles, limited mostly by how quickly you can think of words
+	-empty rooms are lame : ensure at least one interactive thing is in every room
 	-countermeasure for stealing tiles : it should take a while (~5 sec) to pick up a tile if owned by somebody who is not you
     -Doors:
         -Make them wider (little kid new to games had trouble getting through)
@@ -27,9 +25,13 @@
 	-handle colliding with things that aren't walls
 -Bugs
 	-volume sliders do not affect volume
+	-weird bug where letter tile is placed on grid but stays in inventory and breaks shit
+		-it has happened when loading the game scene a second time, but that went away at some point
+		-it has happened when placing a special letter tile on a neutral 4x4 grid
+		-it has happened when placing a visual bomb on a team's grid in 2v2
+		-probably caused by interaction of team code and neutral grid code
 	-sometimes grid square is highlighted but player can't interact with it. why?
-	-Setting down items
-		-items should go back in their original transform, not always letter tile container
+	-dropped items should go back in their original transform, not always letter tile container
 	-dash item gets broken by switching to diff inventory item during dash
 	-if switch away from grappling hook while hook is out, cancel the grappling hook shot
 	-bonking ejects player away from dropped letter tiles
@@ -37,10 +39,6 @@
 	-flag doesnt change color when you pick it up from a non-claimable grid
 	-pressing the select button does not select the first time it is pressed upon loading a scene
 	-somehow some inventory stuff happened which disabled use of fireables on a fireable
-	-weird bug where letter tile is placed on grid but stays in inventory and breaks shit
-		-it has happened when loading the game scene a second time, but that went away at some point
-		-it has happened when placing a special letter tile on a neutral 4x4 grid
-		-probably caused by interaction of team code and neutral grid code
 -Sprites to change
 	-Grappling hook
 		-Chain

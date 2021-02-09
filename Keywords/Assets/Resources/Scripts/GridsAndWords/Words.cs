@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 
 public class Words : MonoBehaviour {
     public int minWordLength; //minimum word length allowed
@@ -64,8 +63,6 @@ public class Words : MonoBehaviour {
     private AudioSource AlreadyMadeWordSFX;
 
     void Awake() {
-        var regex = new Regex(Regex.Escape("o"));
-        var newText = regex.Replace("Hello World", "Foo", 1);
         string[] wordDefPairs = Resources.Load<TextAsset>("Dictionary").text.Split('\n');
         words = new string[wordDefPairs.Length];
         dictionary = new Dictionary<string, string>();

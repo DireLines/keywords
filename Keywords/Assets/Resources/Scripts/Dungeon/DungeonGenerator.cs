@@ -267,8 +267,6 @@ public class DungeonGenerator : MonoBehaviour {
             while (q1.Count > 0) {
                 Room a = q1.Dequeue();
                 MakeLootInRoom(a, depth);
-                //				GameObject roomnumIndicator = a.SpawnItemAtCenter (Door, null);
-                //				roomnumIndicator.GetComponent<Door> ().keyNum = a.roomID;
                 a.reached = true;
                 foreach (Room neighbor in a.neighbors) {
                     int w = DoorWeightFor(depth);
@@ -281,7 +279,7 @@ public class DungeonGenerator : MonoBehaviour {
                             neighbor.neighbors.Remove(a);
                             MakeBorderBetween(a, neighbor, true, w);
                         } else {
-                            MakeBorderBetween(a, neighbor, false, w, doorChance: 0.15f);
+                            MakeBorderBetween(a, neighbor, false, w, doorChance: 0.2f);
                             neighbor.neighbors.Remove(a);
                         }
                     }
@@ -311,12 +309,6 @@ public class DungeonGenerator : MonoBehaviour {
         }
     }
 
-    //private void PlaceDebugDoors() {
-    //    foreach(Room r in rooms) {
-
-    //    }
-    //}
-
     int DoorBaseWeightFor(int depth) {
         Words w = GetComponent<Words>();
         int averageMaxDepth = 7;
@@ -325,13 +317,11 @@ public class DungeonGenerator : MonoBehaviour {
         }
         int deepestAmount = (int)(w.levelScore * w.humanKnowledgeFactor);//scale according to how good the level is
         float howDeepAmI = (float)(depth * depth) / (averageMaxDepth * averageMaxDepth);//scale quadratically with depth
-        //float howDeepAmI = (float)(depth) / (averageMaxDepth);//scale linearly with depth
         return (int)(deepestAmount * howDeepAmI);
     }
 
     int DoorWeightFor(int depth) {
         int variance = Random.Range(-(depth - 1), depth + 1); //add a pinch of salt
-                                                              //		print ("depth: " + depth +" fancy number: " + baseWeight);
         return variance + DoorBaseWeightFor(depth);
     }
 
@@ -536,9 +526,9 @@ public class DungeonGenerator : MonoBehaviour {
         if (depth == 2) {
             PlaceTilesInRoom(r, 2);
         }
-        if (depth > 1 && r.squares.Count > 3 && r.roomID != -5) {//do not make loot in starting rooms or really small rooms or the central chamber
+        if (depth > 1 && r.squares.Count > 3 && r.roomID != (int)RoomID.CentralChamber) {//do not make loot in starting rooms or really small rooms or the central chamber
             float diceRoll = Random.value;
-            if (diceRoll < 0.4f) {//spawn loot 40% of the time (for now, this is too often for real gameplay)
+            if (diceRoll < 0.2f) {//spawn loot in 20% of valid rooms
                 thingsToSpawn.Add(itemPool[Random.Range(0, itemPool.Count)]);
             }
             if (r.squares.Count > 30) {//definitely spawn loot in big enough room
@@ -547,7 +537,7 @@ public class DungeonGenerator : MonoBehaviour {
         }
         if (r.squares.Count > 30) {//spawn grid in center of big enough room
             if (depth >= 4) { //do not spawn new grids too close to starting rooms
-                if (r.roomID != -5) {//do not spawn in central chamber
+                if (r.roomID != (int)RoomID.CentralChamber) {//do not spawn in central chamber
                     r.SpawnItemAtCenter(Grid, GridContainer.transform);
                 }
             }
@@ -570,7 +560,7 @@ public class DungeonGenerator : MonoBehaviour {
     void MakeLetterTiles() {
         // print("making some sweet loot");
         Words w = GetComponent<Words>();
-        for (int i = 0; i < (width * width) / 16; i++) {
+        for (int i = 0; i < (width * width) / 19; i++) {
             GameObject newTile = Instantiate(Tile, Random.insideUnitCircle * cellSize * width / 2, Quaternion.Euler(0, 0, Random.Range(-30f, 30f)), TileContainer.transform);
             newTile.GetComponent<LetterTile>().SetLetter(w.GetRandomSourceChar());
             newTile.GetComponent<LetterTile>().SetLifespan(Random.Range(3, 9));
