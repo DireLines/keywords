@@ -393,7 +393,7 @@ public class PlayerController : MonoBehaviour {
         }
         // pick up flag
         if (closestObject.GetComponent<Flag>()) {
-            closestObject.GetComponent<Flag>().PickFlag(playerNum, gameObject);
+            closestObject.GetComponent<Flag>().PickFlag(me.teamNum, gameObject);
         }
         if (closestObject.GetComponent<Fireable>()) {
             closestObject.GetComponent<Fireable>().PickUp(gameObject);

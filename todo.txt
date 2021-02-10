@@ -25,6 +25,8 @@
 	-handle colliding with things that aren't walls
 -Bugs
 	-volume sliders do not affect volume
+	-menu is janky
+		-most recent navigation input method (mouse, keyboard) should override others
 	-weird bug where letter tile is placed on grid but stays in inventory and breaks shit
 		-it has happened when placing a visual bomb on a team's grid in 2v2, but I can't get it to happen right now
 	-sometimes grid square is highlighted but player can't interact with it. why?
