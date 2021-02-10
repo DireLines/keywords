@@ -362,12 +362,6 @@ public class PlayerController : MonoBehaviour {
         activeSquare.GetComponent<GridSquare>().SetTile(itemToPlace);
         itemToPlace.GetComponent<Placeable>().PlaceOn(activeSquare, gameObject);
         inventory.Remove();
-        if (itemToPlace.GetComponent<Flag>()) {
-            GridControl gc = activeSquare.transform.parent.gameObject.GetComponent<GridControl>();
-            if (gc) {
-                gc.SetOwnership(playerNum);
-            }
-        }
     }
 
     private void TakeFromSquare() {

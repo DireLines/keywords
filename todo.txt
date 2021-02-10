@@ -26,10 +26,7 @@
 -Bugs
 	-volume sliders do not affect volume
 	-weird bug where letter tile is placed on grid but stays in inventory and breaks shit
-		-it has happened when loading the game scene a second time, but that went away at some point
-		-it has happened when placing a special letter tile on a neutral 4x4 grid
-		-it has happened when placing a visual bomb on a team's grid in 2v2
-		-probably caused by interaction of team code and neutral grid code
+		-it has happened when placing a visual bomb on a team's grid in 2v2, but I can't get it to happen right now
 	-sometimes grid square is highlighted but player can't interact with it. why?
 	-dropped items should go back in their original transform, not always letter tile container
 	-dash item gets broken by switching to diff inventory item during dash

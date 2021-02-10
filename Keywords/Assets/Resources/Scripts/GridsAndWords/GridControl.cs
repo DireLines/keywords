@@ -10,6 +10,7 @@ public class GridControl : MonoBehaviour {
     private Words words;
     private AudioSource getKeySource;
     public int ownerNum;
+    [HideInInspector]
     public bool globalGrid;
     public bool claimable;
 
@@ -25,7 +26,7 @@ public class GridControl : MonoBehaviour {
         width = GetComponent<MakeGrid>().width;
         words = GameManager.words;
         getKeySource = GameObject.Find("GetKeySFX").GetComponent<AudioSource>();
-        globalGrid = ownerNum == 0;
+        globalGrid = ownerNum < 1 || ownerNum > 4;
         if (!globalGrid) {
             //recolor grid squares
             Color ownerColor = GameManager.teamByID(ownerNum).color;
@@ -65,7 +66,7 @@ public class GridControl : MonoBehaviour {
         } else {
             word = GetVerticalWord(x, y);
         }
-        if (words.ValidateWord(word, ownerNum, makerNum, globalGrid)) {
+        if (words.ValidateWord(word, ownerNum, makerNum)) {
             foreach (GameObject tile in reachedTiles) {
                 if (!validWordTiles.Contains(tile)) {
                     validWordTiles.Add(tile);

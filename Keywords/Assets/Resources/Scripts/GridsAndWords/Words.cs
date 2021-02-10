@@ -197,22 +197,27 @@ public class Words : MonoBehaviour {
         return vowels[Random.Range(0, vowels.Length)];
     }
 
-    public bool ValidateWord(string word, int teamNum, int makerNum, bool globalGrid = false) {
-        if ((teamNum < 1 || teamNum > 4) && !globalGrid) {
-            print("ValidateWord called on weird team num - returning false");
-            return false;
-        }
-        List<string> madeWords = madeLevelWordsForEachTeam[teamNum - 1];
-        if (!globalGrid && madeWords.Contains(word)) {
-            //			AlreadyMadeWordSFX.Play ();
-            return false;
+    public bool ValidateWord(string word, int teamNum, int makerNum) {
+        bool globalGrid = teamNum < 1 || teamNum > 4;
+        if (!globalGrid) {
+            List<string> madeWords = madeLevelWordsForEachTeam[teamNum - 1];
+            if (madeWords.Contains(word)) {
+                return false;
+            }
         }
         if (globalGrid && madeLevelWords.Contains(word)) {
-            //			AlreadyMadeWordSFX.Play ();
             return false;
         }
         if (dictionary.ContainsKey(word)) {
             unmadeLevelWords.Remove(word);
+            List<string> madeWords;
+            if (globalGrid) {
+                GameObject placingPlayer = GameManager.GetPlayer(makerNum);
+                int placingTeam = placingPlayer.GetComponent<PlayerInfo>().teamNum;
+                madeWords = madeLevelWordsForEachTeam[placingTeam - 1];
+            } else {
+                madeWords = madeLevelWordsForEachTeam[teamNum - 1];
+            }
             madeWords.Add(word);
             madeLevelWords.Add(word);
             if (word.Length >= 6) {
