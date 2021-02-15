@@ -1,6 +1,5 @@
 -Menus
 	-Loading screen
-	-add music/SFX vol sliders in pause menu
 -Game loop
 	-Win condition
 		-First to 50 words
