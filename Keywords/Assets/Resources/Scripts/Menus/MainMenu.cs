@@ -33,22 +33,14 @@ public class MainMenu : MonoBehaviour {
     }
 
     public void Play() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("Versus");
     }
 
     public void TwoVTwo() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+        SceneManager.LoadScene("2v2");
     }
 
     public void Quit() {
         Application.Quit();
-    }
-
-    public void ChangeSFXLevel(Slider slider) {
-
-    }
-
-    public void ChangeMusicLevel(Slider slider) {
-
     }
 }
