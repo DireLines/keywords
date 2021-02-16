@@ -7,7 +7,9 @@ public class TextOverlay : MonoBehaviour {
     public float timeUntilDecay = 10f;
     public float timeSpentDecaying = 2f;
 
+    [HideInInspector]
     public bool coroutineInitialized;
+    [HideInInspector]
     public bool coroutinePaused;
 
     public TMP_Text text;

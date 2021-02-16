@@ -37,7 +37,10 @@ public class GridSquare : MonoBehaviour {
             if (playersOnMe <= 0) {
                 playersOnMe = 0;
                 sr.color = normalColor;
-                other.transform.gameObject.GetComponent<PlayerController>().SetActiveSquare(null);
+                GameObject activeSquare = other.transform.gameObject.GetComponent<PlayerController>().activeSquare;
+                if (activeSquare == gameObject) {
+                    other.transform.gameObject.GetComponent<PlayerController>().SetActiveSquare(null);
+                }
             }
         }
     }

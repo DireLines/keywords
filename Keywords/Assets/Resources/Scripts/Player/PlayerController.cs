@@ -79,10 +79,6 @@ public class PlayerController : MonoBehaviour {
     // Use this for initialization
     void Start() {
         stars = transform.Find("Stars").gameObject;
-        stars.SetActive(true);
-        foreach (Transform star in stars.transform) {
-            star.gameObject.GetComponent<Star>().Circle(transform.position);
-        }
         stars.SetActive(false);
         rb = GetComponent<Rigidbody2D>();
         rb.freezeRotation = true;
