@@ -8,8 +8,6 @@ public class LetterTile : Placeable {
     private GameObject letterSprite;
     private GameObject numberSprite;
 
-    private Words words;
-
     public bool infinite;
 
     private AudioSource DestroyTileSFX;
@@ -19,7 +17,6 @@ public class LetterTile : Placeable {
 
     void Awake() {
         anim = GetComponent<Animator>();
-        words = GameManager.words;
         letterSprite = transform.FindDeepChild("LetterSprite").gameObject;
         numberSprite = transform.FindDeepChild("NumberSprite").gameObject;
         DestroyTileSFX = GameManager.instance.sfx["DestroyTileSFX"];

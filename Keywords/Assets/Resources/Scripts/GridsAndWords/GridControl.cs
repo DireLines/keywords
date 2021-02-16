@@ -8,7 +8,6 @@ public class GridControl : MonoBehaviour {
     private List<GameObject> validWordTiles;
     public char placeholder = ' ';
     private Words words;
-    private AudioSource getKeySource;
     public int ownerNum;
     [HideInInspector]
     public bool globalGrid;
@@ -25,7 +24,6 @@ public class GridControl : MonoBehaviour {
     void Start() {
         width = GetComponent<MakeGrid>().width;
         words = GameManager.words;
-        getKeySource = GameObject.Find("GetKeySFX").GetComponent<AudioSource>();
         globalGrid = ownerNum < 1 || ownerNum > 4;
         if (!globalGrid) {
             //recolor grid squares

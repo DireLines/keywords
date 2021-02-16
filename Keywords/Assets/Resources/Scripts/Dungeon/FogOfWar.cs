@@ -41,7 +41,7 @@ public class FogOfWar : MonoBehaviour {
         }
         Game.RepositionHeight(gameObject, Height.Background);
         //gameObject.GetComponent<SpriteRenderer>().enabled = false;
-        gameObject.GetComponent<SpriteRenderer>().color = floorColor;
-        gameObject.GetComponent<BoxCollider2D>().enabled = false;//prevent repeat triggering
+        GetComponent<SpriteRenderer>().color = floorColor;
+        GetComponent<BoxCollider2D>().enabled = false;//prevent repeat triggering
     }
 }

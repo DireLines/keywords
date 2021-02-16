@@ -13,7 +13,6 @@ public class PlayerController : MonoBehaviour {
     private Inventory inventory;
 
     public GameObject activeSquare;//the grid square the player's currently on
-    private GameObject TileContainer; //the parent object for the letter tiles
 
     public Camera cam;
     private Camera2DFollow camScript;
@@ -86,7 +85,6 @@ public class PlayerController : MonoBehaviour {
         camScript = cam.GetComponent<Camera2DFollow>();
         playerNum = me.playerNum;
         inventory = GetComponent<Inventory>();
-        TileContainer = GameObject.Find("Tiles");
         mycolor = GetComponent<SpriteRenderer>().color;
         aimIndicator = transform.Find("AimIndicator").gameObject;
         aimIndicator.GetComponent<SpriteRenderer>().color = mycolor;
@@ -301,9 +299,6 @@ public class PlayerController : MonoBehaviour {
         //lsInput = new Vector2(axisX, axisY);
         //rb.velocity = pMovSpeed * lsInput; 
         HandleMovement(axisX, axisY);
-        // if (Input.GetKeyDown(AButton) || (me.playerNum == keyboardControlledPlayer && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.E)))) {
-        //     DebugDash(axisX, axisY);
-        // }
     }
     #endregion
 
@@ -424,10 +419,6 @@ public class PlayerController : MonoBehaviour {
         }
 
         rb.velocity = Vector2.Lerp(rb.velocity, move, handling);
-    }
-    private void DebugDash(float GetAxisX, float GetAxisY) {
-        Vector2 move = Vector2.ClampMagnitude(new Vector2(GetAxisX, GetAxisY), 1);
-        rb.velocity = move * pMovCurrentSpeed * 6;
     }
 
     // movement modifier access

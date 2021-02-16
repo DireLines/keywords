@@ -11,7 +11,6 @@ namespace UnityStandardAssets._2D {
         public float lookAheadMoveThreshold = 0.1f;
 
         //zooming
-        private float minCamSize;
         private bool isZooming = false;
         public float zoomRate;
         public float[] zoomTargets;
@@ -23,7 +22,7 @@ namespace UnityStandardAssets._2D {
         private Vector3 m_LastTargetPosition;
         private Vector3 m_CurrentVelocity;
         private Vector3 m_LookAheadPos;
-        
+
         private bool shaking;
         public float shakeMagnitude = 1f;
         public float shakeDamping = 0f;
@@ -104,12 +103,12 @@ namespace UnityStandardAssets._2D {
             }
         }
 
-		public void Shake (float duration) {
+        public void Shake(float duration) {
             if (shaking) return;
             StartCoroutine(ShakeCR(duration));
-		}
+        }
 
-        private Vector2 GetRandomGaussian () {
+        private Vector2 GetRandomGaussian() {
             float v1 = UnityEngine.Random.value;
             float v2 = UnityEngine.Random.value;
             float r = Mathf.Sqrt(-2 * Mathf.Log10(v1));
@@ -120,7 +119,7 @@ namespace UnityStandardAssets._2D {
             return new Vector2(x, y);
         }
 
-		private IEnumerator ShakeCR (float duration) {
+        private IEnumerator ShakeCR(float duration) {
             shaking = true;
             float t = 0f;
             float initialDamping = damping;
@@ -140,9 +139,9 @@ namespace UnityStandardAssets._2D {
             target = initialTarget;
             //print("Target: " + target.name + "   InitialTarget: " + initialTarget.name);
             shaking = false;
-		}
-        
-        public void ToggleZoom(bool zoomIn=false) {
+        }
+
+        public void ToggleZoom(bool zoomIn = false) {
             isZooming = true;
             if (zoomIn) {
                 zoomTargetIndex = Game.mod(zoomTargetIndex - 1, zoomTargets.Length);

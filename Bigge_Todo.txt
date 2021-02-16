@@ -36,34 +36,13 @@ TODO:
             -Add list of door objects to the room class
                 -Maybe list of wall objects as well
             -Function in room for replacing a door with a special door or a wall
-    -Scrabble Thing:
-        -Make some kind of flash effect or animation to indicate that a word was made
-            -sufficient to make an effect for decrementing a letter tile.
-        -Make a flashy effect for showing a door was unlocked
-            -flash starts at word just made, moves toward unlocked door
-            -only player who sees it is the player who unlocked the door
-        -Make player slower when on grid
-            -If too fast it's hard to place tiles precisely
-    -In-game UI:
-        -List of recently made words
-            -Versus: on side of each player's screen.
-            -Coop: one list in center of screen, color coded by player
     -Game meta:
-        -make dungeon gen seed based
         -Title screen with options for:
-            -start game
-            -quit
-            -coop / competitive
             -player joining
             -seed
         -make game interface adapt to num players
             -"press A to join!"
         -ugh
-    -Implement features:
-        -Interfaces / abstract classes for:
-            -pickup item
-            +machine
-            -enemy
 
 
 

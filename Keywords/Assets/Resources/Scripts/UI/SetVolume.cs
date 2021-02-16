@@ -9,7 +9,7 @@ public class SetVolume : MonoBehaviour {
     private Slider slider;
     public string paramName;
     private void Start() {
-        slider = gameObject.GetComponent<Slider>();
+        slider = GetComponent<Slider>();
         float sliderValue = PlayerPrefs.GetFloat(paramName, slider.maxValue);
         slider.value = sliderValue;
         SetLevel(sliderValue);
