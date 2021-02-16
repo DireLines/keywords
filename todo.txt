@@ -27,7 +27,6 @@
 		-most recent navigation input method (mouse, keyboard) should override others
 	-weird bug where letter tile is placed on grid but stays in inventory and breaks shit
 		-it has happened when placing a visual bomb on a team's grid in 2v2, but I can't get it to happen right now
-	-sometimes grid square is highlighted but player can't interact with it. why?
 	-dropped items should go back in their original transform, not always letter tile container
 	-dash item gets broken by switching to diff inventory item during dash
 	-if switch away from grappling hook while hook is out, cancel the grappling hook shot
