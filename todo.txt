@@ -33,7 +33,7 @@
 	-if switch away from grappling hook while hook is out, cancel the grappling hook shot
 	-bonking ejects player away from dropped letter tiles
 		-probably because of high linear drag on letter tiles
-	-pressing the select button does not select the first time it is pressed upon loading a scene
+	-pressing the A button on a controller does not select the first time it is pressed upon loading a scene
 	-somehow some inventory stuff happened which disabled use of fireables on a fireable
 -Sprites to change
 	-Grappling hook
