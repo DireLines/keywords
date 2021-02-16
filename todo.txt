@@ -19,6 +19,8 @@
         -Make them wider (little kid new to games had trouble getting through)
         -Display number of keys needed to open the door
 -Grappling hook
+	-make the hook start from the player's position when firing
+	-make it not have to be kinematic when dropped
 	-make chain visible
 	-make it grab letters / players(?)
 	-handle colliding with things that aren't walls
@@ -27,12 +29,10 @@
 		-most recent navigation input method (mouse, keyboard) should override others
 	-weird bug where letter tile is placed on grid but stays in inventory and breaks shit
 		-it has happened when placing a visual bomb on a team's grid in 2v2, but I can't get it to happen right now
-	-dropped items should go back in their original transform, not always letter tile container
 	-dash item gets broken by switching to diff inventory item during dash
 	-if switch away from grappling hook while hook is out, cancel the grappling hook shot
 	-bonking ejects player away from dropped letter tiles
 		-probably because of high linear drag on letter tiles
-	-flag doesnt change color when you pick it up from a non-claimable grid
 	-pressing the select button does not select the first time it is pressed upon loading a scene
 	-somehow some inventory stuff happened which disabled use of fireables on a fireable
 -Sprites to change

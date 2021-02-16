@@ -22,7 +22,6 @@ public class GridSquare : MonoBehaviour {
         normalColor = sr.color;
         anim = GetComponent<Animator>();
     }
-    //TODO: make it rigorously impossible for there to be no active grid square if the player is within the confines of a grid
 
     void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.name.Contains("Player") && other.isTrigger) {

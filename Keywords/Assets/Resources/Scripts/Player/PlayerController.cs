@@ -341,7 +341,7 @@ public class PlayerController : MonoBehaviour {
     private void Drop() {
         GameObject itemToDrop = inventory.Get();
         if (itemToDrop != null) {
-            itemToDrop.transform.SetParent(TileContainer.transform);
+            itemToDrop.transform.SetParent(null);//for now, just place in the world
             Game.RepositionHeight(itemToDrop, Height.OnFloor);
             Game.EnablePhysics(itemToDrop);
             if (itemToDrop.GetComponent<Fireable>()) {
@@ -387,10 +387,7 @@ public class PlayerController : MonoBehaviour {
         if (closestObject == null) {
             return;
         }
-        // pick up flag
-        if (closestObject.GetComponent<Flag>()) {
-            closestObject.GetComponent<Flag>().PickFlag(me.teamNum, gameObject);
-        }
+
         if (closestObject.GetComponent<Fireable>()) {
             closestObject.GetComponent<Fireable>().PickUp(gameObject);
         }

@@ -67,6 +67,9 @@ public class Inventory : MonoBehaviour {
         if (gh) {
             gh.onPickup();
         }
+        if (obj.GetComponent<Flag>()) {
+            obj.GetComponent<Flag>().PickFlag(GetComponent<PlayerInfo>().teamNum, gameObject);
+        }
 
         //create item preview in inventory UI
         Transform SlotUI = UI.transform.Find("Slot" + activeSlot);
