@@ -19,8 +19,8 @@ public class WordWiggle : MonoBehaviour {
 
     private void Awake() {
         Canvas[] containingCanvases = GetComponentsInParent<Canvas>();
-        Transform containingCanvas = containingCanvases[containingCanvases.Length - 1].transform;
-        wiggles = containingCanvas.GetComponentsInChildren<WordWiggle>();
+        Transform topmostCanvas = containingCanvases[containingCanvases.Length - 1].transform;
+        wiggles = topmostCanvas.GetComponentsInChildren<WordWiggle>();
     }
     private void Start() {
         transforms = transform.GetComponentsInChildren<RectTransform>();
