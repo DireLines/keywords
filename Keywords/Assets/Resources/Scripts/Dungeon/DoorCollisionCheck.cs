@@ -9,6 +9,12 @@ public class DoorCollisionCheck : MonoBehaviour {
     void Start() {
         doors = transform;
     }
+
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.U)) {
+            UnlockAllDoors();//debug use
+        }
+    }
     public void SetDoorCollisions(GameObject playerObj, int numKeys) {
         PlayerInfo player = playerObj.GetComponent<PlayerInfo>();
         int playerNum = player.playerNum;
@@ -25,6 +31,19 @@ public class DoorCollisionCheck : MonoBehaviour {
                     string layerName = "P" + playerNum.ToString();
                     Game.SetLayer(adoorable, LayerMask.NameToLayer(layerName));
                 }
+            }
+        }
+    }
+
+    //debug
+    public void UnlockAllDoors() {
+        PlayerInfo[] players = GameObject.Find("Players").GetComponentsInChildren<PlayerInfo>();
+        foreach (Transform child in doors) {
+            Door door = child.gameObject.GetComponent<Door>();
+            foreach (PlayerInfo player in players) {
+                int playerNum = player.playerNum;
+                door.Unlock(playerNum);
+                Physics2D.IgnoreCollision(player.gameObject.GetComponent<CircleCollider2D>(), door.GetComponent<BoxCollider2D>());
             }
         }
     }
