@@ -15,6 +15,13 @@ public class WordWiggle : MonoBehaviour {
 
     private RectTransform[] transforms;
 
+    private WordWiggle[] wiggles;
+
+    private void Awake() {
+        Canvas[] containingCanvases = GetComponentsInParent<Canvas>();
+        Transform containingCanvas = containingCanvases[containingCanvases.Length - 1].transform;
+        wiggles = containingCanvas.GetComponentsInChildren<WordWiggle>();
+    }
     private void Start() {
         transforms = transform.GetComponentsInChildren<RectTransform>();
         initialPositionData = new Vector3[transforms.Length];
@@ -36,6 +43,9 @@ public class WordWiggle : MonoBehaviour {
     }
 
     public void StartWiggle() {
+        foreach (WordWiggle wiggle in wiggles) {
+            wiggle.StopWiggle();
+        }
         wiggling = true;
     }
 

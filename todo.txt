@@ -26,7 +26,8 @@
 	-handle colliding with things that aren't walls
 -Bugs
 	-menu is janky
-		-most recent navigation input method (mouse, keyboard) should override others
+		-mouse selection should move keyboard navigation to the selected item
+		-mouse selection should happen on mouse move in addition to enter/exit
 	-weird bug where letter tile is placed on grid but stays in inventory and breaks shit
 		-it has happened when placing a visual bomb on a team's grid in 2v2, but I can't get it to happen right now
 	-dash item gets broken by switching to diff inventory item during dash
@@ -35,6 +36,7 @@
 		-probably because of high linear drag on letter tiles
 	-pressing the A button on a controller does not select the first time it is pressed upon loading a scene
 	-somehow some inventory stuff happened which disabled use of fireables on a fireable
+	-recoloring squares while player is on top of them is slightly wrong
 -Sprites to change
 	-Grappling hook
 		-Chain
