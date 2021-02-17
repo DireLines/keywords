@@ -13,6 +13,10 @@ public class GrapplingHook : Fireable {
         hook.launch(direction, launchSpeed, pullSpeed);
     }
 
+    public override void Cancel() {
+        hook.Stop();
+    }
+
     public void onPickup() {
         player = transform.parent.gameObject;
         Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>());

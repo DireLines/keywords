@@ -12,31 +12,31 @@
 		-Play Again
 		-Main Menu
 -cooldown indicator in UI slot
--Balance
-	-empty rooms are lame : ensure at least one interactive thing is in every room
-	-countermeasure for stealing tiles : it should take a while (~5 sec) to pick up a tile if owned by somebody who is not you
-    -Doors:
-        -Make them wider (little kid new to games had trouble getting through)
-        -Display number of keys needed to open the door
 -Grappling hook
 	-make the hook start from the player's position when firing
 	-make it not have to be kinematic when dropped
 	-make chain visible
 	-make it grab letters / players(?)
 	-handle colliding with things that aren't walls
+-Balance
+	-tiles are a bit overabundant (reduce average lifespan?)
+	-empty rooms are lame : ensure at least one interactive thing is in every room
+	-countermeasure for stealing tiles : it should take a while (~5 sec) to pick up a tile if owned by somebody who is not you
+    -Doors:
+        -Make them wider (little kid new to games had trouble getting through)
+        -Display number of keys needed to open the door
 -Bugs
 	-menu is janky
 		-mouse selection should move keyboard navigation to the selected item
 		-mouse selection should happen on mouse move in addition to enter/exit
-	-weird bug where letter tile is placed on grid but stays in inventory and breaks shit
-		-it has happened when placing a visual bomb on a team's grid in 2v2, but I can't get it to happen right now
-	-dash item gets broken by switching to diff inventory item during dash
-	-if switch away from grappling hook while hook is out, cancel the grappling hook shot
 	-bonking ejects player away from dropped letter tiles
 		-probably because of high linear drag on letter tiles
 	-pressing the A button on a controller does not select the first time it is pressed upon loading a scene
-	-somehow some inventory stuff happened which disabled use of fireables on a fireable
 	-recoloring squares while player is on top of them is slightly wrong
+-Bugs I don't know how to trigger
+	-weird bug where letter tile is placed on grid but stays in inventory and breaks shit
+		-it has happened when placing a visual bomb on a team's grid in 2v2
+	-somehow some inventory stuff happened which disabled use of fireables on a fireable
 -Sprites to change
 	-Grappling hook
 		-Chain

@@ -22,4 +22,8 @@ public class Fireable : Activatable {
     public virtual void Drop() {
 
     }
+
+    public virtual void Cancel() {
+
+    }
 }

@@ -528,7 +528,7 @@ public class DungeonGenerator : MonoBehaviour {
         }
         if (depth > 1 && r.squares.Count > 3 && r.roomID != (int)RoomID.CentralChamber) {//do not make loot in starting rooms or really small rooms or the central chamber
             float diceRoll = Random.value;
-            if (diceRoll < 0.2f) {//spawn loot in 20% of valid rooms
+            if (diceRoll < 0.3f) {//spawn loot in 30% of valid rooms
                 thingsToSpawn.Add(itemPool[Random.Range(0, itemPool.Count)]);
             }
             if (r.squares.Count > 30) {//definitely spawn loot in big enough room
@@ -560,7 +560,7 @@ public class DungeonGenerator : MonoBehaviour {
     void MakeLetterTiles() {
         // print("making some sweet loot");
         Words w = GetComponent<Words>();
-        for (int i = 0; i < (width * width) / 19; i++) {
+        for (int i = 0; i < (width * width) / 16; i++) {
             GameObject newTile = Instantiate(Tile, Random.insideUnitCircle * cellSize * width / 2, Quaternion.Euler(0, 0, Random.Range(-30f, 30f)), TileContainer.transform);
             newTile.GetComponent<LetterTile>().SetLetter(w.GetRandomSourceChar());
             newTile.GetComponent<LetterTile>().SetLifespan(Random.Range(3, 9));
@@ -569,7 +569,7 @@ public class DungeonGenerator : MonoBehaviour {
 
     void PlaceGoodTilesInRoom(Room r, int numTiles) {
         Words w = GetComponent<Words>();
-        string startingTileSet = "";
+        string startingTileSet;
         do {
             startingTileSet = "";
             for (int i = 0; i < numTiles; i++) {
