@@ -72,6 +72,19 @@ Behind the locked doors are
         -riddle/tiny grid to make the answer on.
         -opened by placing a particular letter tile on a slot next to the door
         -secret rooms: each secret room has a special 5-character password which is not an English word. Making this word on any grid will open the room.
+-word tiles: tiles that stand for more than one letter
+    -fuser machine which has a 1x7 non-claimable grid next to it
+    -words made on that grid will fuse into a word tile, which counts as that whole word
+    -the lifespan of the new tile is the maximum of the letter/word tiles used to form it
+        -with the exception of infinite tiles, which give it a lifespan of 15
+    -for the purposes of scoring, a word tile contributes the number of letters in the word
+    -scatter 2- and 3-letter word tiles around as loot
+-secret rooms
+    -put rare loot inside tiny rooms
+    -generate a non-word passphrase which removes that room's walls
+        -except for walls on the border of the world
+    -entering the passphrase on a grid unlocks the walls
+    -scatter word tiles with passphrases written on them as loot
 -hints about various things in the level, on little scraps of paper
     -passwords to open secret rooms
     -set of letters that will be used next level

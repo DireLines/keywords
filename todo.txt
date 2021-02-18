@@ -1,57 +1,59 @@
 -Menus
-	-Loading screen
+    -Loading screen
+    -cooldown indicator in UI slot
 -Game loop
-	-Win condition
-		-First to 50 words
-		-If time, make it first to make any word at least 8 letters long
-			-and make doors to the central room take about 40 words to enter
-		-If time, add multiple floors
-	-Win screen
-		-Player X has Won the Game! / Team X has Won the Game!
-		-runners-up ranked by score
-		-Play Again
-		-Main Menu
--cooldown indicator in UI slot
+    -Win condition
+        -First to 50 words
+        -If time, make it first to make any word at least 8 letters long
+            -and make doors to the central room take about 40 words to enter
+        -If time, add multiple floors
+    -Win screen
+        -Player X has Won the Game! / Team X has Won the Game!
+        -runners-up ranked by score
+        -Play Again
+        -Main Menu
 -Grappling hook
-	-make the hook start from the player's position when firing
-	-make it not have to be kinematic when dropped
-	-make chain visible
-	-make it grab letters / players(?)
-	-handle colliding with things that aren't walls
+    -make the hook start from the player's position when firing
+    -make it not have to be kinematic when dropped
+    -make chain visible
+    -make it grab letters / players(?)
+    -handle colliding with things that aren't walls
 -Balance
-	-tiles are a bit overabundant (reduce average lifespan?)
-	-empty rooms are lame : ensure at least one interactive thing is in every room
-	-countermeasure for stealing tiles : it should take a while (~5 sec) to pick up a tile if owned by somebody who is not you
+    -tiles are a bit overabundant (reduce average lifespan?)
+    -empty rooms are lame : ensure at least one interactive thing is in every room
+    -countermeasure for stealing tiles : it should take a while (~5 sec) to pick up a tile if owned by somebody who is not you
     -Doors:
         -Make them wider (little kid new to games had trouble getting through)
         -Display number of keys needed to open the door
 -Bugs
-	-menu is janky
-		-mouse selection should move keyboard navigation to the selected item
-		-mouse selection should happen on mouse move in addition to enter/exit
-	-bonking ejects player away from dropped letter tiles
-		-probably because of high linear drag on letter tiles
-	-pressing the A button on a controller does not select the first time it is pressed upon loading a scene
-	-recoloring squares while player is on top of them is slightly wrong
+    -menu is janky
+        -mouse selection should move keyboard navigation to the selected item
+        -mouse selection should happen on mouse move in addition to enter/exit
+    -bonking ejects player away from dropped letter tiles
+        -probably because of high linear drag on letter tiles
+    -pressing the A button on a controller does not select the first time it is pressed upon loading a scene
+    -recoloring squares while player is on top of them is slightly wrong
 -Bugs I don't know how to trigger
-	-weird bug where letter tile is placed on grid but stays in inventory and breaks shit
-		-it has happened when placing a visual bomb on a team's grid in 2v2
-	-somehow some inventory stuff happened which disabled use of fireables on a fireable
+    -weird bug where letter tile is placed on grid but stays in inventory and breaks shit
+        -it has happened when placing a visual bomb on a team's grid in 2v2
+    -somehow some inventory stuff happened which disabled use of fireables on a fireable
 -Sprites to change
-	-Grappling hook
-		-Chain
-		-Hook
-	-Dash
-	-Blink
+    -Grappling hook
+        -Chain
+        -Hook
+    -Dash
+    -Blink
 -SFX
-	--place flag : snare drum
-	-grappling hook 
-		-fishing line cast (sped up) 
-		--reeling in
-	--machines should hum faintly with spatial blend when charging
-	--bonk - quiet tweeting birds while stunned
+    --place flag : snare drum
+    -grappling hook 
+        -fishing line cast (sped up) 
+        --reeling in
+    --machines should hum faintly with spatial blend when charging
+    --bonk - quiet tweeting birds while stunned
 -more features from design doc
+    -word tiles
+    -secret rooms
 -networked version
-	-server client architecture (Mirror seems ok)
-	-generalize to any number of players
-	-matchmaking UI
+    -server client architecture (Mirror seems ok)
+    -generalize to any number of players
+    -matchmaking UI
