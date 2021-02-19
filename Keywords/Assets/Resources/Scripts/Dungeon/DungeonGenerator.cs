@@ -87,18 +87,7 @@ public class DungeonGenerator : MonoBehaviour {
 
     //makes a room of width w and height h centered at [x,y]
     void MakeRoom(int x, int y, int w, int h) {
-        for (int i = -(w / 2); i <= w / 2; i++) {
-            for (int j = -(h / 2); j <= h / 2; j++) {
-                int a = i + x;
-                int b = j + y;
-                if (InBounds(a, b)) {
-                    if (rooms[a, b] == 0) {
-                        numCheckedOff++;
-                    }
-                    rooms[a, b] = numRooms;
-                }
-            }
-        }
+        MakeRoom(x, y, w, h, numRooms);
         numRooms++;
     }
 
