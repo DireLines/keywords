@@ -35,8 +35,8 @@ public class Inventory : MonoBehaviour {
         OldSlotUI.gameObject.GetComponent<Image>().color = unselectedSlotColor;
         if (items[activeSlot] != null) {
             items[activeSlot].SetActive(false);
-            Fireable fireable = items[activeSlot].GetComponent<Fireable>();
-            if (fireable) {
+            Fireable fireable;
+            if (fireable = items[activeSlot].GetComponent<Fireable>()) {
                 fireable.Cancel();
             }
         }
