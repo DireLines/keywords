@@ -207,7 +207,9 @@ public class Words : MonoBehaviour {
             }
         }
         if ((globalGrid || globallyUniqueWords) && madeLevelWords.Contains(word)) {
-            AlreadyMadeWordSFX.Play();
+            if (globallyUniqueWords) {
+                AlreadyMadeWordSFX.Play();
+            }
             return false;
         }
         if (dictionary.ContainsKey(word)) {
