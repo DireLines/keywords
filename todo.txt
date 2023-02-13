@@ -19,9 +19,10 @@
     -make it grab letters / players(?)
     -handle colliding with things that aren't walls
 -Balance
+    -traveling takes too long late game : holding LT should start moving player at sprinting speed
+    -countermeasure for stealing tiles : it should take a while (~5 sec) to pick up a tile if owned by somebody who is not you
     -tiles are a bit overabundant (reduce average lifespan?)
     -empty rooms are lame : ensure at least one interactive thing is in every room
-    -countermeasure for stealing tiles : it should take a while (~5 sec) to pick up a tile if owned by somebody who is not you
     -Doors:
         -Make them wider (little kid new to games had trouble getting through)
         -Display number of keys needed to open the door

@@ -64,8 +64,7 @@ Basic Gameplay: 2.5D Top Down, Played using controllers exclusively
 Behind the locked doors are
 
 -more locked doors
--kinda weak enemies which drop letter tiles
--free letter tiles (rarely)
+-letter tiles
 -neutral grids. They can be claimed using flags
 -puzzles
     -doors locked by things other than keys
@@ -89,16 +88,6 @@ Behind the locked doors are
     -passwords to open secret rooms
     -set of letters that will be used next level
     -words on the current level nobody has made yet (or maybe definitions of them, as hints)
--weapons: pretty basic set of weapons. Infinite ammo and all that (combat is not really a focus of the game)
-    -Main deal is that all enemies are weak except boss's minions, but higher damage weapons make it faster to kill things (wider area of effect / faster attack speed)
-    -however, as a cost, higher damage weapons damage letter tiles dropped by killed / injured enemies more
-    -higher damage weapons also kill boss's minions (which have a lot of health and don't drop letter tiles) faster
-    -sword
-    -mace
-    -warhammer
-    -crossbow
-    -pistol
-    -shotgun
 -movement modifiers: Moving around quickly is a focus of the game, however. All kinds of crazy items for optimizing movement efficiency are present.
     -walking speed buffs
     -temporary stacking walking speed buffs (like Skooma)
@@ -132,35 +121,62 @@ Behind the locked doors are
     +Deleter: has a slot where you can put a letter tile. Leaving it there for one minute will delete it.
     +Oracle: has a slot where you can put a letter tile. Leaving it there for one minute will delete it and it will spit out a piece of paper with a previously uncreated valid word on it.
         -change print to create piece of paper object
+    -Fuser: has two slots where you can put letter tile. If both are filled, the two tiles will be fused after one minute into a word tile holding the concatenation of the two.
     -Altar: has a slot where you can put a letter tile. Leaving it there for one minute will delete it and unlock a random currently locked door for all players.
     -Generator: Has a button which, when pushed, immediately completes all cooldowns of all other machines (including other Generators). Has a cooldown of one minute.
         This creates a kind of exploit thing with 2 generators, a duplicator and an altar. 2 Generators can recharge each other and allow all devices to be used arbitrarily frequently. If these devices include a duplicator and an altar relatively close to each other, players can repeatedly unlock random doors until all doors in the level have been unlocked.
     -Evil Red Button: A button which, when pressed, immediately freezes all tiles on all grids in place (just like the Tile Freeze device). Pressing it again immediately unfreezes all tiles. Has no cooldown, but each player can only press it twice.
     -Teleporter: Comes with the teleporter remote item. When the player with the teleporter remote activates it, they will get teleported to the Teleporter. Cooldown of one minute.
     -Dumbwaiter: Used to send letter tiles to lower levels and retrieve them from higher levels. There is at least one per floor (exactly one, plus maybe one in a secret room), and it can only be used once per floor. Placing a letter tile on its slot will send the tile down to the next floor. If the dumbwaiter on the next floor is reached, the slot will initially contain that tile.
--The Level Boss
-    -The boss is behind a door which is close to the starting area but requires many keys to enter.
-    -The boss chamber is large and has an 8x8 global grid in it.
-    -The boss has a "kill word" which is the longest word less than 9 characters long which can be made using the floor letters.
-    -Making this kill word kills the boss instantly.
-        -Since the word is often 8 characters, it must often be made in the boss chamber.
-        -However, if it's less than that it can be made on any grid.
-    -The boss will spawn waves of dark enemies who chase players through the level and deal high-damage attacks which quickly destroy tiles.
-    -You can lose to these enemies by allowing too many tiles to be destroyed and being unable to make the kill word anymore
-    -Reward for beating the boss:
-        -Elevator to next floor unlocked. However, upon entering it all letter tiles the player is carrying are destroyed.
-        -One piece of loot per player. Like, there's one locked chest per player and each player can only open one chest.
-        -The first person to enter the elevator wins the floor and gets a victory point
--The Level Ultra Boss
-    -The Ultra Boss is behind a door which is very far from the starting area and requires even more keys than the regular boss (enough that you'll have to get into some weird words to open it)
-    -Very similar to a normal boss fight, but harder in some way and more intense boss fight music.
-    -Reward for beating the Ultra Boss:
-        -Elevator to next floor unlocked. The player who enters it first gets to keep all tiles in their inventory.
-        -One piece of loot per player, but it's a free for all
-        -The first person to enter the elevator wins the floor and gets TWO victory points
--The Final Boss
-    -In all floors past the first 3, if somebody makes all possible words in the floor, then the boss chamber and ultra boss chamber will be replaced with the Final Boss fight.
-    -In the first 3 floors, if somebody makes all possible words in the floor, they will get a great deal of sweet loot
-    -Reward for beating the Final Boss:
-        -Game is over
-      ...
+
+
+random ideas for maybe optional mechanics
+-setting: words can only be made once. toggle on/off on menu. 
+When on, first team to make a word claims the points for that word and nobody else can make it for points.
+-magic words: In addition to lifespan, letter tiles also have another number associated with them called *magic* which ranges from 0-3.
+A certain list of words is designated as "magic words". 
+If constructed on a board using letter tiles with enough total magic, a magic word will trigger its effect, 
+consuming magic from the tiles and causing some in game consequence.
+Each team can trigger each magic word only once, just like the rules for claiming points from making a word.
+    -the typical example I'm imagining is making the word "grapple" or "hook" and a grappling hook being summoned next to the grid,
+    and similar trigger words for summoning other items.
+        -"sword" will summon a sword
+        -"tile" will summon a random letter tile
+    -all kinds of easter eggs can be fit in here. "portal" summons a portal gun and that kind of stuff
+    -specifically,in order for a magic word to fire, the sum of magic over all letter tiles in the word must be
+    at least the magic cost, which is simply the number of letters in the word.
+        -Magic points are deducted round robin over any tiles which have magic points, 
+        until the magic cost is reached.
+    -tiles will now only expire when they have no lifespan and no magic score left.
+        -tiles with no lifespan but some magic score can still be used to form magic words, but not to score words normally.
+    -machine to add 1 point of magic to letter tile
+    -plurals can sometimes be used to get a bonus effect
+        -"secret" will unlock a random locked secret room
+        -"secrets" will unlock all locked secret rooms
+    -magic words may be phrases which require each word in the phrase be made on the board simultaneously using the magic rules
+        -"magic board" and "magic grid" will turn the grid into a magic grid, which means all tiles on it have infinite magic score.
+    -design role
+        -learning the magic words and their effects constitutes deep situational knowledge that will give a team an edge.
+            -However, this makes the game less accessible to newcomers. So make it a toggle in the menu that is off by default.
+        -team wordsmith can do something useful for team explorer besides just make enough words to unlock doors
+        -team wordsmith gets a chance to interact with game mechanics knowledge and not just pure word knowledge
+-starting board should be smaller than 7x7. This will give players more of a reason to care about external boards
+    -5x5 starting boards
+    -most external boards will be either 4x4 or 7x7; 
+    the 4x4 ones are good mostly for strategic position, the 7x7 ones are potential base relocations.
+    -shovel item commonly found in secret rooms allows digging up single grid spaces,
+    which can then be transferred between grids to extend them.
+    -starting boards are still not claimable.
+-consumable item which destroys a single segment of wall.
+-win condition select
+    -first to x points wins - x = 10,25,40,50,80,100,150,200,all words
+    -most points in t minutes wins - t = multiples of 5 minutes, 5 through 90
+    -escape - first to escape the arena wins. The conditions for escaping are discovered by the players during the match.  
+    -last man standing - words only serve to open doors, the true objective is to kill the other teams.
+-maps - several basic shapes for team starting positions
+    -square, start slightly NESW of center.
+    -square, start extreme NESW of center at midpoints of sides.
+    -diamond, start at extreme NESW of center in corners of diamond.
+    -donut, start at equal angles around donut.
+    -rectangle, start evenly spaced along bottom of board.
+    -islands of rooms with long hallways between them, start on some islands
