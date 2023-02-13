@@ -8,6 +8,7 @@ public class Words : MonoBehaviour {
     public int minWordLength; //minimum word length allowed
     public int maxWordLength; //maximum word length allowed
     public int maxWordLengthForScoring; //maximum word length taken into consideration when determining how many words can be made from a set of letters
+    public bool globallyUniqueWords = false;
 
     private Dictionary<char, int> characterFrequencies = new Dictionary<char, int> {
         {'e',37902},
@@ -205,7 +206,8 @@ public class Words : MonoBehaviour {
                 return false;
             }
         }
-        if (globalGrid && madeLevelWords.Contains(word)) {
+        if ((globalGrid || globallyUniqueWords) && madeLevelWords.Contains(word)) {
+            AlreadyMadeWordSFX.Play();
             return false;
         }
         if (dictionary.ContainsKey(word)) {
