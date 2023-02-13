@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour {
     private KeyCode StartButton;
 
     public float speed;
+    private float sprintMultiplier = 1.75f; //how much faster does the player move while sprinting?
     private float pMovHandleBase = 0.8f; // Player movmement "handling" when player is "slow" (within max speed)
     private float pMovHandleFast = 0.05f; // When moving fast, drag/handling
     private bool pMovDisable = false; // Disables basic movement mechanics entirely
@@ -213,6 +214,11 @@ public class PlayerController : MonoBehaviour {
         }
         if (lt_pressed && ltrigger < triggerReleaseThreshold) {
             lt_pressed = false;
+        }
+        if (lt_pressed) {
+            setMovSpeed(speed * sprintMultiplier);
+        } else {
+            setMovSpeed(speed);
         }
 
 
@@ -453,7 +459,10 @@ public class PlayerController : MonoBehaviour {
     public float getMovSpeed() {
         return pMovCurrentSpeed;
     }
-    public void setMovSpeed(float value, float duration) {
+    public void setMovSpeed(float value) {
+        pMovCurrentSpeed = value;
+    }
+    public void setMovSpeedTemp(float value, float duration) {
         if (pMovSpeedResetCoroutine != null) {
             StopCoroutine(pMovSpeedResetCoroutine);
         }
@@ -489,7 +498,7 @@ public class PlayerController : MonoBehaviour {
         // play tweety bird animation
         setMovHandle(0.004f, duration);
         setStarsActive(duration);
-        setMovSpeed(speed * 0.2f, duration);
+        setMovSpeedTemp(speed * 0.2f, duration);
         bonkSFX.Play();
         camScript.Shake(0.35f);
         return true;

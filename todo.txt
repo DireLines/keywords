@@ -19,7 +19,6 @@
     -make it grab letters / players(?)
     -handle colliding with things that aren't walls
 -Balance
-    -traveling takes too long late game : holding LT should start moving player at sprinting speed
     -countermeasure for stealing tiles : it should take a while (~5 sec) to pick up a tile if owned by somebody who is not you
     -tiles are a bit overabundant (reduce average lifespan?)
     -empty rooms are lame : ensure at least one interactive thing is in every room
@@ -34,6 +33,9 @@
         -probably because of high linear drag on letter tiles
     -pressing the A button on a controller does not select the first time it is pressed upon loading a scene
     -recoloring squares while player is on top of them is slightly wrong
+        -this is because propagation is not instant
+        -for instance, player can trigger multiple instances of color propagation by flying into a room with a grappling hook
+        at faster than propagation speed.
 -Bugs I don't know how to trigger
     -weird bug where letter tile is placed on grid but stays in inventory and breaks shit
         -it has happened when placing a visual bomb on a team's grid in 2v2
@@ -54,8 +56,8 @@
 -more features from design doc
     -word tiles
     -secret rooms
+    -magic words
 -networked version
     -server client architecture (Mirror seems ok)
     -generalize to any number of players
     -matchmaking UI
--move off old assets
