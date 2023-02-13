@@ -142,7 +142,7 @@ Each team can trigger each magic word only once, just like the rules for claimin
     and similar trigger words for summoning other items.
         -"sword" will summon a sword
         -"tile" will summon a random letter tile
-    -all kinds of easter eggs can be fit in here. "portal" summons a portal gun and that kind of stuff
+    -all kinds of easter eggs can be fit in here. "portal gun" summons a portal gun and that kind of stuff
     -specifically,in order for a magic word to fire, the sum of magic over all letter tiles in the word must be
     at least the magic cost, which is simply the number of letters in the word.
         -Magic points are deducted round robin over any tiles which have magic points, 
@@ -166,6 +166,8 @@ Each team can trigger each magic word only once, just like the rules for claimin
     the 4x4 ones are good mostly for strategic position, the 7x7 ones are potential base relocations.
     -shovel item commonly found in secret rooms allows digging up single grid spaces,
     which can then be transferred between grids to extend them.
+        -a grid space can be carried as an inevntory item and placed on any floor position adjacent to exactly one existing grid space.
+        It will then become part of the adjacent grid
     -starting boards are still not claimable.
 -consumable item which destroys a single segment of wall.
 -win condition select

@@ -58,3 +58,4 @@
     -server client architecture (Mirror seems ok)
     -generalize to any number of players
     -matchmaking UI
+-move off old assets
