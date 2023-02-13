@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
-public class SceneLoader : MonoBehaviour
-{
+public class SceneLoader : MonoBehaviour {
     public static SceneLoader instance;
 
     [SerializeField]
@@ -19,21 +18,16 @@ public class SceneLoader : MonoBehaviour
 
     private bool loading;
 
-    void Awake()
-    {
-        if (instance == null)
-        {
+    void Awake() {
+        if (instance == null) {
             instance = this;
-        }
-        else
-        {
+        } else {
             Destroy(gameObject);
         }
 
         DontDestroyOnLoad(gameObject);
 
-        if (anim == null)
-        {
+        if (anim == null) {
             anim = GetComponent<Animator>();
         }
 
@@ -41,26 +35,21 @@ public class SceneLoader : MonoBehaviour
         loadingText.gameObject.SetActive(false);
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
-        }
-    }
+    // private void Update() {
+    //     if (Input.GetKeyDown(KeyCode.Space)) {
+    //         LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+    //     }
+    // }
 
-    public static void LoadSceneAsync(int buildIndex, LoadSceneMode mode = LoadSceneMode.Single)
-    {
+    public static void LoadSceneAsync(int buildIndex, LoadSceneMode mode = LoadSceneMode.Single) {
         instance.StartCoroutine(instance.LoadSceneCR(buildIndex, mode));
     }
 
-    public static void LoadSceneAsync(string sceneName, LoadSceneMode mode = LoadSceneMode.Single)
-    {
+    public static void LoadSceneAsync(string sceneName, LoadSceneMode mode = LoadSceneMode.Single) {
         LoadSceneAsync(SceneManager.GetSceneByName(sceneName).buildIndex, mode);
     }
 
-    private IEnumerator LoadSceneCR(int buildIndex, LoadSceneMode mode)
-    {
+    private IEnumerator LoadSceneCR(int buildIndex, LoadSceneMode mode) {
         loading = true;
         //StartCoroutine(LoadingTextCR());
 
@@ -75,8 +64,7 @@ public class SceneLoader : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
 
         AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync(buildIndex, mode);
-        while (!asyncLoadLevel.isDone)
-        {
+        while (!asyncLoadLevel.isDone) {
             yield return null;
         }
         loading = false;
@@ -85,21 +73,18 @@ public class SceneLoader : MonoBehaviour
         yield return new WaitForEndOfFrame();
     }
 
-    private IEnumerator LoadingTextCR()
-    {
+    private IEnumerator LoadingTextCR() {
         loadingText.gameObject.SetActive(true);
         float t = 0f;
         Color endColor = loadingText.material.color;
         Color startColor = endColor;
         startColor.a = 0f;
-        while (loading)
-        {
+        while (loading) {
             loadingText.material.SetColor("_Color", Color.Lerp(startColor, endColor, t));
 
             int elipsesCount = Mathf.FloorToInt(t * 3f) % 3 + 1;
             string text = "Loading";
-            for (int i = 0; i < elipsesCount; i++)
-            {
+            for (int i = 0; i < elipsesCount; i++) {
                 text += ".";
             }
             loadingText.text = text;

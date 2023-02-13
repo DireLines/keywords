@@ -13,11 +13,11 @@ public class MakeGrid : MonoBehaviour {
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < width; j++) {
                 GameObject newSquare = Instantiate(
-                    gridSquare,
-                    transform.position + new Vector3(j * (gridSquare.transform.localScale.x + borderSize), -i * (gridSquare.transform.localScale.x + borderSize), 0f),
-                    Quaternion.identity,
-                    transform
-                );
+                                           gridSquare,
+                                           transform.position + new Vector3(j * (gridSquare.transform.localScale.x + borderSize), -i * (gridSquare.transform.localScale.x + borderSize), 0f),
+                                           Quaternion.identity,
+                                           transform
+                                       );
                 newSquare.name = "Square_" + i + "_" + j;
                 GetComponent<GridControl>().grid[i, j] = newSquare;
                 newSquare.GetComponent<GridSquare>().x = i;

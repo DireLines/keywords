@@ -268,9 +268,9 @@ public class Words : MonoBehaviour {
 
     public string GetRandomUnmadeWord(int word_length = 4) {
         List<string> result = new List<string>(
-                                from s in unmadeLevelWords
-                                where s.Length == word_length
-                                select s);
+            from s in unmadeLevelWords
+            where s.Length == word_length
+            select s);
         if (result.Count == 0) {
             if (unmadeLevelWords.Count > 0)
                 return unmadeLevelWords[Random.Range(0, unmadeLevelWords.Count)];
