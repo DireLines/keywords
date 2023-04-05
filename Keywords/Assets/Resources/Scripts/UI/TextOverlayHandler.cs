@@ -33,9 +33,9 @@ public class TextOverlayHandler : MonoBehaviour {
         GameObject instance = Instantiate(wordPrefab.gameObject, transform) as GameObject;
         TextOverlay overlay = instance.GetComponent<TextOverlay>();
         overlay.GetComponent<RectTransform>().sizeDelta = new Vector2(
-                                                                      overlay.GetComponent<RectTransform>().sizeDelta.x,
-                                                                      overlay.GetComponent<RectTransform>().sizeDelta.y * (definitionFontSize / wordFontSize)
-                                                                     );
+            overlay.GetComponent<RectTransform>().sizeDelta.x,
+            overlay.GetComponent<RectTransform>().sizeDelta.y * (definitionFontSize / wordFontSize)
+        );
         if (defOverlays.Count >= maxWords) {
             TextOverlay defToRemove = defOverlays.Dequeue();
             Destroy(defToRemove.gameObject);

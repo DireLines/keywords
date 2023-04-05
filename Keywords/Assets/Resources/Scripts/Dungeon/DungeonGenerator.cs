@@ -539,9 +539,15 @@ public class DungeonGenerator : MonoBehaviour {
             if (objSpawned.name.Contains("ExoticTile")) {
                 objSpawned.GetComponent<LetterTile>().SetLetter(w.GetRandomNonSourceChar());
                 objSpawned.GetComponent<LetterTile>().SetLifespan(Random.Range(10, 16));
+                if (w.useMagicWords) {
+                    objSpawned.GetComponent<LetterTile>().SetMagic(Random.Range(0, 5));
+                }
             } else if (objSpawned.name.Contains("InfiniteTile")) {
                 objSpawned.GetComponent<LetterTile>().SetLetter(w.GetRandomVowel());
                 objSpawned.GetComponent<LetterTile>().SetLifespan(16);
+                if (w.useMagicWords) {
+                    objSpawned.GetComponent<LetterTile>().SetMagic(Random.Range(0, 5));
+                }
             }
         }
     }
@@ -553,6 +559,9 @@ public class DungeonGenerator : MonoBehaviour {
             GameObject newTile = Instantiate(Tile, Random.insideUnitCircle * cellSize * width / 2, Quaternion.Euler(0, 0, Random.Range(-30f, 30f)), TileContainer.transform);
             newTile.GetComponent<LetterTile>().SetLetter(w.GetRandomSourceChar());
             newTile.GetComponent<LetterTile>().SetLifespan(Random.Range(3, 9));
+            if (w.useMagicWords) {
+                newTile.GetComponent<LetterTile>().SetMagic(Random.Range(0, 3));
+            }
         }
     }
 
@@ -570,6 +579,9 @@ public class DungeonGenerator : MonoBehaviour {
             GameObject newTile = r.SpawnItem(Tile, Quaternion.Euler(0, 0, Random.Range(-30f, 30f)), TileContainer.transform);
             newTile.GetComponent<LetterTile>().SetLetter(startingTiles[i]);
             newTile.GetComponent<LetterTile>().SetLifespan(Random.Range(3, 9));
+            if (w.useMagicWords) {
+                newTile.GetComponent<LetterTile>().SetMagic(Random.Range(0, 3));
+            }
         }
     }
 
@@ -584,6 +596,9 @@ public class DungeonGenerator : MonoBehaviour {
             GameObject newTile = r.SpawnItem(Tile, Quaternion.Euler(0, 0, Random.Range(-30f, 30f)), TileContainer.transform);
             newTile.GetComponent<LetterTile>().SetLetter(startingTiles[i]);
             newTile.GetComponent<LetterTile>().SetLifespan(Random.Range(3, 9));
+            if (w.useMagicWords) {
+                newTile.GetComponent<LetterTile>().SetMagic(Random.Range(0, 3));
+            }
         }
     }
 

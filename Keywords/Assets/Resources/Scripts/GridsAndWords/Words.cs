@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Linq;
+using System;
 
 public class Words : MonoBehaviour {
     public int minWordLength; //minimum word length allowed
     public int maxWordLength; //maximum word length allowed
     public int maxWordLengthForScoring; //maximum word length taken into consideration when determining how many words can be made from a set of letters
-    public bool globallyUniqueWords = false;
+    public bool globallyUniqueWords = false; //if true, each word can only be scored once and not once per team.
 
     private Dictionary<char, int> characterFrequencies = new Dictionary<char, int> {
         {'e',37902},
@@ -58,6 +59,9 @@ public class Words : MonoBehaviour {
     public float humanKnowledgeFactor = 0.6f; //approximately what percentage of words less than 8 letters long does the average player actually know?
 
     string[] bannedLetterCombs = { "ing" }; //all banned letter combinations in source word
+
+    public bool useMagicWords = false; //are magic words allowed?
+    private Dictionary<string, Action> magicWords = new Dictionary<string,Action>();//TODO: make scriptable object
 
     private AudioSource GetKeySFX;
     private AudioSource BigKeySFX;
@@ -183,19 +187,19 @@ public class Words : MonoBehaviour {
     }
 
     public char GetRandomSourceChar() {
-        return currentSourceChars[Random.Range(0, currentSourceChars.Count)];
+        return currentSourceChars[UnityEngine.Random.Range(0, currentSourceChars.Count)];
     }
 
     public char GetRandomNonSourceChar() {
         char result = 'a';
         do {
-            result = (char)Random.Range(Game.ascii_a, Game.ascii_z + 1);
+            result = (char)UnityEngine.Random.Range(Game.ascii_a, Game.ascii_z + 1);
         } while (currentSourceChars.Contains(result));
         return result;
     }
 
     public char GetRandomVowel() {
-        return vowels[Random.Range(0, vowels.Length)];
+        return vowels[UnityEngine.Random.Range(0, vowels.Length)];
     }
 
     public bool ValidateWord(string word, int teamNum, int makerNum) {
@@ -245,7 +249,7 @@ public class Words : MonoBehaviour {
             bool banned = false;
 
             while (score < lowerThreshold || score > upperThreshold || banned) {
-                randomword = numletterwords[Random.Range(0, numletterwords.Length)];
+                randomword = numletterwords[UnityEngine.Random.Range(0, numletterwords.Length)];
                 score = GetScore(randomword);
 
                 //Check if word contains banned letter combinations
@@ -277,9 +281,9 @@ public class Words : MonoBehaviour {
             select s);
         if (result.Count == 0) {
             if (unmadeLevelWords.Count > 0)
-                return unmadeLevelWords[Random.Range(0, unmadeLevelWords.Count)];
+                return unmadeLevelWords[UnityEngine.Random.Range(0, unmadeLevelWords.Count)];
             return "haha stinky poopoo";
         }
-        return result[Random.Range(0, result.Count)];
+        return result[UnityEngine.Random.Range(0, result.Count)];
     }
 }

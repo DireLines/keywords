@@ -4628,6 +4628,7 @@ MonoBehaviour:
   numLevels: 5
   levelScore: 0
   humanKnowledgeFactor: 0.7
+  useMagicWords: 1
 --- !u!4 &1569157446
 Transform:
   m_ObjectHideFlags: 0
